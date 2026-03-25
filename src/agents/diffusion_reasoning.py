@@ -21,14 +21,13 @@ class DiffusionStep(nn.Module):
         # As noise_level decreases (towards 0), the refinement becomes more prominent
         return x + refinement * (1.0 - noise_level)
 
-class RecursiveDiffusionReasoning(nn.Module):
+class RecursiveDiffusionReasoning:
     """
-    الاستدلال عبر الانتشار التكراري (Build 2.1).
+    الاستدلال عبر الانتشار تكراري (Build 2.1).
     RecursiveDiffusionReasoning: Procedurally "crystallizes" solutions through
     iterative diffusion steps within the RLM-N protocol.
     """
     def __init__(self, state_dim=128, num_steps=10):
-        super().__init__()
         self.state_dim = state_dim
         self.num_steps = num_steps
         self.diffusion_model = DiffusionStep(state_dim)

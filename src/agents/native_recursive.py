@@ -1,9 +1,7 @@
 import torch
 import torch.nn as nn
-import numpy as np
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from src.agents.diffusion_reasoning import RecursiveDiffusionReasoning
-from src.governor.governor import HolographicGovernor
 
 class RLMOrchestrator(nn.Module):
     """
@@ -42,15 +40,9 @@ class NativelyRecursiveAgent:
     """
     الوكيل التكراري الأصيل (RLM-N) - إصدار 2026.
     Natively Recursive Agent (RLM-N) for 10M+ hypercontext management.
-    Fully integrated with Resilient Modeling and Holographic Governance.
+    Now integrated with Recursive Diffusion Reasoning for solution crystallization.
     """
-    def __init__(self,
-                 base_model: Optional[nn.Module] = None,
-                 governor: Optional[HolographicGovernor] = None,
-                 state_dim: int = 128):
-        # Determine device
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+    def __init__(self, base_model=None, state_dim=128):
         self.orchestrator = base_model if base_model else RLMOrchestrator()
         self.orchestrator.to(self.device)
 
@@ -59,13 +51,12 @@ class NativelyRecursiveAgent:
 
         self.sandbox = NativeSandbox()
         self.diffusion_refiner = RecursiveDiffusionReasoning(state_dim=state_dim)
-        self.diffusion_refiner.to(self.device)
-
         self.max_depth = 1 # Recursive limit for HAG-2.0
 
     def solve_complex_task(self, query: str, massive_input: str):
         """
-        حل المهام المعقدة عبر التكرار الأصيل والانتشار والحوكمة.
+        حل المهام المعقدة عبر التكرار الأصيل والانتشار.
+        Solves complex tasks using the 'Delegate & Synthesize' protocol.
         """
         # 1. Initialize environment and store data
         self.sandbox.store("big_data", massive_input)
@@ -108,9 +99,12 @@ class NativelyRecursiveAgent:
     def _synthesize(self, results):
         """
         بلورة النتائج باستخدام الانتشار التكراري (Crystallization).
+        Synthesizes results using the Recursive Diffusion Reasoning protocol.
         """
-        q_vec = torch.randn(1, 32).to(self.device)
-        c_vec = torch.randn(1, 32).to(self.device)
+        # Convert sub-results to dummy vectors for the diffusion model
+        # In Build 2.1, this is the 'Crystallization' step.
+        q_vec = torch.randn(1, 32)
+        c_vec = torch.randn(1, 32)
         crystallized = self.diffusion_refiner.solve_with_diffusion(q_vec, c_vec)
 
         answer = f"Crystallized Answer (Energy: {crystallized['final_energy']:.4f}) from {len(results)} RLM-N sub-calls."
@@ -121,7 +115,5 @@ class NativelyRecursiveAgent:
             "context_capacity": "10M+ Tokens (100x Growth)",
             "retrieval_accuracy": "62% (Target)",
             "token_efficiency": "3.0x (Target)",
-            "mechanism": "Recursive Diffusion Crystallization",
-            "integrity_layer": "Holographic Governor (EKRLS)",
-            "device": str(self.device)
+            "mechanism": "Recursive Diffusion Crystallization"
         }
