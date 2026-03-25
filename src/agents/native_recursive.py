@@ -43,6 +43,9 @@ class NativelyRecursiveAgent:
     Now integrated with Recursive Diffusion Reasoning for solution crystallization.
     """
     def __init__(self, base_model=None, state_dim=128):
+        # Determine device
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
         self.orchestrator = base_model if base_model else RLMOrchestrator()
         self.orchestrator.to(self.device)
 
@@ -51,6 +54,8 @@ class NativelyRecursiveAgent:
 
         self.sandbox = NativeSandbox()
         self.diffusion_refiner = RecursiveDiffusionReasoning(state_dim=state_dim)
+        self.diffusion_refiner.to(self.device)
+
         self.max_depth = 1 # Recursive limit for HAG-2.0
 
     def solve_complex_task(self, query: str, massive_input: str):
@@ -103,8 +108,8 @@ class NativelyRecursiveAgent:
         """
         # Convert sub-results to dummy vectors for the diffusion model
         # In Build 2.1, this is the 'Crystallization' step.
-        q_vec = torch.randn(1, 32)
-        c_vec = torch.randn(1, 32)
+        q_vec = torch.randn(1, 32).to(self.device)
+        c_vec = torch.randn(1, 32).to(self.device)
         crystallized = self.diffusion_refiner.solve_with_diffusion(q_vec, c_vec)
 
         answer = f"Crystallized Answer (Energy: {crystallized['final_energy']:.4f}) from {len(results)} RLM-N sub-calls."
@@ -115,5 +120,6 @@ class NativelyRecursiveAgent:
             "context_capacity": "10M+ Tokens (100x Growth)",
             "retrieval_accuracy": "62% (Target)",
             "token_efficiency": "3.0x (Target)",
-            "mechanism": "Recursive Diffusion Crystallization"
+            "mechanism": "Recursive Diffusion Crystallization",
+            "device": str(self.device)
         }
