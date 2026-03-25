@@ -1,0 +1,19 @@
+{
+  "EKRLS": {
+    "lambda_reg": 0.1,
+    "sigma": 1.0,
+    "q_threshold": 0.85
+  },
+  "Ribbon": {
+    "capacity": 1000000,
+    "fpr": 0.01
+  },
+  "Q_Score_Weights": {
+    "Grounding": 0.18,
+    "Certainty": 0.22,
+    "Structure": 0.20,
+    "Applicability": 0.18,
+    "Coherence": 0.12,
+    "Generativity": 0.10
+  }
+}
