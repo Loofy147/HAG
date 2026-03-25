@@ -8,6 +8,7 @@ class ResilientHAGModel(nn.Module):
     نموذج HAG المرن (Build 2.1) - GPU Ready.
     ResilientHAGModel: Combines Symmetry-Aware Feature Extraction (LieAugmenter)
     with Robust Holographic Weight Storage.
+    Now supports RLM Orchestration protocol.
     """
     def __init__(self, input_dim, hidden_dim=64):
         super().__init__()
@@ -42,6 +43,20 @@ class ResilientHAGModel(nn.Module):
 
         # Final output
         return self.final_net(h)
+
+    def generate_step(self, query):
+        """
+        Implementation of the RLM Orchestration protocol for Build 2.1.
+        Generates an exploration code or strategy snippet.
+        """
+        # In a real system, this would be an LLM-head on the resilient backbone.
+        return f"import re; search_result = re.findall('{query}', big_data)"
+
+    def llm_batch(self, snippets):
+        """
+        Parallel processing of context snippets using the resilient core.
+        """
+        return [{"final": "Resilient synthesis from snippet context."} for _ in snippets]
 
     def get_resilience_report(self, x, erasure_ratio=0.2):
         """

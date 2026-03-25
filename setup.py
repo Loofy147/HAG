@@ -11,6 +11,11 @@ setup(
         "pandas>=2.0.0",
         "kaggle>=1.5.12"
     ],
+    entry_points={
+        'console_scripts': [
+            'hag-cli=src.cli.main:main',
+        ],
+    },
     author="hichambedrani",
     description="A sovereign AI system with holographic weight encoding and symmetry-aware learning.",
     license="Sovereign Intelligence License",
