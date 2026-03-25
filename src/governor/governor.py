@@ -2,8 +2,8 @@ import numpy as np
 
 class HolographicGovernor:
     """
-    محرك Governor 1.0 لتتبع نزاهة الاستدلال ومنع انزياح النماذج.
-    HolographicGovernor: Tracks reasoning integrity and prevents model drift via EKRLS.
+    محرك Governor 2.0 (HAG-2.0 Prototype) لتتبع نزاهة الاستدلال ومنع انزياح النماذج.
+    HolographicGovernor: Tracks reasoning integrity and prevents model drift via EKRLS (Build 2.0).
     """
     def __init__(self, lambda_forget=0.99, sigma_kernel=1.0, threshold=0.85):
         self.lam = lambda_forget  # معامل النسيان الأسي (Exponential forgetting factor)
