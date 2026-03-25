@@ -81,7 +81,8 @@ class NativelyRecursiveAgent:
 
             # Integrity check via Governor (Simulated vector from query/plan)
             # In Build 2.1, this ensures the reasoning path is stable.
-            reasoning_vector = np.random.randn(10) # Placeholder for embedding
+            # Fixed vector size to match input_dim of governor dictionary initialization
+            reasoning_vector = np.random.randn(16)
             if not self.governor.step(reasoning_vector, feedback_signal=1.0):
                 return "CRITICAL ERROR: Reasoning integrity breach detected. Solution aborted."
 
