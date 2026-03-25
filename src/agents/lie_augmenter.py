@@ -8,49 +8,37 @@ class LieAugmenter(nn.Module):
     """
     def __init__(self, input_dim, num_generators=3, hidden_dim=64):
         super().__init__()
-        # Learnable Lie Algebra Generators: Lie Algebra basis elements
+        # Learnable Lie Algebra Generators: Lie Algebra basis elements (input_dim x input_dim)
         self.generators = nn.Parameter(torch.randn(num_generators, input_dim, input_dim) * 0.1)
-
-        # Base Prediction Network
-        self.prediction_net = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, 1) # Assuming a scalar output for simplicity
-        )
 
     def forward(self, x):
         """
         تطبيق التحولات المكتشفة لتعزيز كفاءة التعلم.
-        Applies discovered transformations for sample-efficient learning.
+        Applies discovered transformations.
+        Input: (batch, input_dim) -> Output: (batch, input_dim)
         """
-        # 1. Sample transformation coefficients alpha (infinitesimal steps)
-        # In practice, these could be learned or sampled from a distribution
         batch_size = x.shape[0]
         num_gens = self.generators.shape[0]
+        # Alphas: coefficients for the infinitesimal transformation
         alphas = torch.randn(batch_size, num_gens, 1, 1).to(x.device)
 
         # 2. Compute transformation matrix G via Exponential Map
-        # G = exp(sum(alpha_l * g_l))
-        # Expand generators to batch size
         gens_expanded = self.generators.unsqueeze(0).expand(batch_size, -1, -1, -1)
         lie_algebra_element = torch.sum(alphas * gens_expanded, dim=1)
 
-        # Use Pade Approximation / Scaling and Squaring via torch.matrix_exp
+        # G = exp(A)
         transformation_matrix = torch.matrix_exp(lie_algebra_element)
 
-        # 3. Apply transformation to inputs (Augmented View)
-        # x shape: (batch_size, input_dim)
-        # transformation_matrix shape: (batch_size, input_dim, input_dim)
+        # 3. Apply transformation: (batch, 1, input_dim) @ (batch, input_dim, input_dim)
         augmented_x = torch.bmm(x.unsqueeze(1), transformation_matrix).squeeze(1)
 
-        # 4. Symmetry-aware prediction
-        return self.prediction_net(augmented_x)
+        return augmented_x
 
     def get_invariance_loss(self, x):
         """
-        Calculates how invariant the model is to the learned symmetries.
-        loss = ||f(x) - f(exp(g)x)||
+        Calculates how invariant a dummy prediction (magnitude) is to the learned symmetries.
+        In a real scenario, this would compare model(x) and model(aug_x).
         """
-        y_orig = self.prediction_net(x)
-        y_aug = self.forward(x)
-        return torch.mean((y_orig - y_aug)**2)
+        # For simplicity in this base class, we measure how much the transformation changes the norm
+        x_aug = self.forward(x)
+        return torch.mean((torch.norm(x, dim=1) - torch.norm(x_aug, dim=1))**2)
