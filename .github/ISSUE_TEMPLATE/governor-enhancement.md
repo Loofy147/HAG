@@ -1,24 +1,23 @@
 ---
-name: Governor Kernel Update (EKRLS)
-about: Propose changes or refinements to the reasoning integrity tracker.
+name: "HAG-GOV-01: تنفيذ محرك تتبع النزاهة (Governor 1.0)"
+about: بناء نواة تتبع الحالة الإدراكية للوكيل باستخدام إطار العمل EKRLS.
 title: "[GOVERNOR] <Summary of Enhancement>"
 labels: governor, kernel
 assignees: ''
 
 ---
 
-### Core Improvement
-What specific aspect of the EKRLS or reasoning integrity logic are you improving? (e.g., RKHS kernel update, drift detection precision).
+### 🟢 الوصف (Description)
+بناء نواة تتبع الحالة الإدراكية للوكيل باستخدام إطار العمل **EKRLS** (مربعات الصغرى العودية للنواة الممتدة) لضمان عدم انهيار سلاسل الاستدلال.
 
-### Mathematical Basis
-Please provide the formula or derivation supporting this change.
-- Target: Maintain Q-Score > 0.85
-- Drift Detection Precision: Target 96%+
+### 🔵 المتطلبات التقنية (Technical Requirements)
+*   نمذجة تطور تفكير الوكيل كمنظومة ديناميكية في فضاء هيلبرت (RKHS) وفق المعادلات:
+    $$x(n+1) = Fx(n) + v(n)$$   $$y(n) = \kappa(x(n), \cdot) + e(n)$$
+*   استخدام تقنيات "تحديث الرتبة الثانية" (Rank-2 updates) لتسريع العمليات الحسابية وتجنب انعكاس المصفوفات المكثف.
 
-### Implementation Plan
-- [ ] Update src/governor/kernel.py
-- [ ] Update Bayesian weights in configs/
-- [ ] Add/Update tests in tests/test_governor.py
+### 🟡 معايير القبول (Acceptance Criteria)
+- [ ] تحقيق دقة لا تقل عن **96.18%** في اكتشاف "انزياح المفهوم" (Concept Drift).
+- [ ] تفعيل تنبيه بروتوكولي عند انخفاض جودة الاستدلال $Q$ دون **0.85**.
 
-### Expected Impact
-How will this affect system stability or hallucination rates?
+### 🔴 المجلد المستهدف (Target Directory)
+`src/governor/`

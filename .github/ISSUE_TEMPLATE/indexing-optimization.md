@@ -1,23 +1,22 @@
 ---
-name: Indexing Optimization (Ribbon)
-about: Propose refinements for O(1) retrieval and memory savings.
+name: "HAG-IDX-01: بناء فهرس التشابك (Ribbon Indexer)"
+about: تنفيذ محرك بحث متجهي عالي الكفاءة يعتمد على مرشحات الشريط (Ribbon Filters).
 title: "[INDEXING] <Summary of Optimization>"
 labels: indexing, ribbon
 assignees: ''
 
 ---
 
-### Goal
-What optimization is being targeted? (e.g., FPR reduction, Boolean banding speed, memory compression).
+### 🟢 الوصف (Description)
+تنفيذ محرك بحث متجهي عالي الكفاءة يعتمد على **مرشحات الشريط** (Ribbon Filters) لاستبدال مرشحات بلوم التقليدية، مما يقلل من استهلاك الموارد الكلاسيكية في الشبكات الضخمة.
 
-### Technical Requirements
-- Memory Savings: Target 27%
-- Access Complexity: O(1)
+### 🔵 المتطلبات التقنية (Technical Requirements)
+*   بناء مصفوفة معاملات $A \in \{0, 1\}^{n \times m}$ بحيث تتركز المدخلات غير الصفرية في "شريط" على طول القطر المعمم.
+*   استخدام طريقة الحذف الغاوسي اللحظي (On-the-fly Gaussian elimination) عبر GF(2) لبناء المرشح في زمن $O(n/e^2)$.
 
-### Implementation Steps
-- [ ] Modify src/indexing/ribbon.py
-- [ ] Update capacity/fpr in configs/
-- [ ] Perform stress test (billions of items)
+### 🟡 معايير القبول (Acceptance Criteria)
+- [ ] خفض استهلاك الذاكرة العشوائية (RAM) بنسبة **27%** عند معالجة 100 مليون مفتاح.
+- [ ] ضمان سرعة وصول واستعلام ثابتة عند $O(1)$.
 
-### Validation
-How will we verify the memory/speed trade-off?
+### 🔴 المجلد المستهدف (Target Directory)
+`src/indexing/`

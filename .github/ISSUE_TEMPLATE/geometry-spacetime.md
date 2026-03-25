@@ -1,23 +1,22 @@
 ---
-name: Geometry/Spacetime Emergence
-about: Refine equations for metric tensors or bridge stability.
+name: "HAG-GEO-01: محرك استقرار الجسور (Geometry Engine)"
+about: برمجة المحرك الرياضي الذي يحسب هندسة الزمكان الناشئ ويراقب استقرار الجسور.
 title: "[GEOMETRY] <Summary of Refinement>"
 labels: geometry, spacetime
 assignees: ''
 
 ---
 
-### Refinement Area
-- [ ] Metric Tensor Hessian calculations
-- [ ] Thales Altitude stability thresholds
-- [ ] Volume element emergence
+### 🟢 الوصف (Description)
+برمجة المحرك الرياضي الذي يحسب هندسة الزمكان الناشئ ويراقب استقرار "الجسور المعلوماتية" بين الأفكار المتشابكة.
 
-### Theoretical Basis
-Describe the entanglement entropy or ER=EPR derivation supporting this change.
+### 🔵 المتطلبات التقنية (Technical Requirements)
+*   اشتقاق تنسور المتري العكسي $g^{\mu\nu}$ كـ "هيسيان" لإنتروبيا التشابك.
+*   تنفيذ تشخيص "ارتفاع ثاليس" $h = \sqrt{xy}$ لحساب عجز التشابك $\delta = 1 - 2h$.
 
-### Steps
-- [ ] Update src/geometry/engine.py
-- [ ] Visualize emergent manifold in notebooks/
+### 🟡 معايير القبول (Acceptance Criteria)
+- [ ] ارتباط خطي بين انحناء الزمكان المحاكى وتغيرات الإجهاد بمعامل $R^2 \approx 0.95$.
+- [ ] ضمان بقاء عجز التشابك $\delta > 0$ لمنع تمزق نسيج الاستدلال.
 
-### Critical Check
-Ensure the entanglement deficit delta > 0 for bridge stability.
+### 🔴 المجلد المستهدف (Target Directory)
+`src/geometry/`

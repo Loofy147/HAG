@@ -1,22 +1,22 @@
 ---
-name: RLM Context Protocol
-about: Propose new strategies for recursive language modeling and context management.
+name: "HAG-AGT-01: بروتوكول السياق الفائق (RLM Integration)"
+about: دمج بنية نماذج اللغة التكرارية (RLM) للسماح بمعالجة سياقات تصل إلى 10 ملايين توكن.
 title: "[RLM] <Summary of Strategy>"
 labels: agents, rlm
 assignees: ''
 
 ---
 
-### Strategy Overview
-Describe the new decomposition or peeking strategy for ultra-large (10M+) contexts.
+### 🟢 الوصف (Description)
+دمج بنية **نماذج اللغة التكرارية** (RLM) للسماح للوكيل بمعالجة سياقات ضخمة تصل إلى 10 ملايين توكن عبر تفويض العمل لبيئات تشغيل خارجية.
 
-### Efficiency Targets
-- Token Savings: 2x - 3x reduction
-- Max Recursion Depth: (Standard d=3)
+### 🔵 المتطلبات التقنية (Technical Requirements)
+*   إعداد بيئة `Python REPL` مستقرة ومعزولة (Sandbox) لتخزين البيانات الضخمة كمتغيرات خارجية.
+*   تنفيذ آلية الاستدعاء الذاتي للوكيل (Recursion Depth = 1) لتجزئة المهام المعقدة.
 
-### Components Involved
-- [ ] src/agents/rlm.py
-- [ ] REPL integration stability
+### 🟡 معايير القبول (Acceptance Criteria)
+- [ ] تحقيق دقة استرداد لا تقل عن **62%** في اختبارات "إبرة في كومة قش" لسياق 10M توكن.
+- [ ] تحسين كفاءة التوكنات بنسبة **2-3 مرات** عبر تقليل الحمولة على النموذج الرئيسي.
 
-### Notes
-Ensure reasoning chains remain coherent under deep recursion.
+### 🔴 المجلد المستهدف (Target Directory)
+`src/agents/`
