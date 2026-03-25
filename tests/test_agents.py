@@ -8,29 +8,31 @@ class TestRLMOrchestrator(unittest.TestCase):
         self.governor = GovernorKernelEKRLS()
         self.orchestrator = RLMOrchestrator(self.governor)
 
-    def test_context_decomposition(self):
-        # Small payload: should be leaf
+    def test_context_decomposition_with_peek(self):
+        # Small payload: leaf processing
         payload = "A" * 1000
         result = self.orchestrator.process_hypercontext("summarize", payload)
         self.assertEqual(result["orchestration_status"], "Success")
         self.assertEqual(len(result["results"]), 1)
-        self.assertEqual(result["total_tokens"], 1000)
+        # Verify REPL state
+        self.assertIn("processed_state", result["results"][0])
 
-    def test_recursive_decomposition(self):
-        # Large payload: should fragment (threshold 1M)
+    def test_recursive_peeking(self):
+        # Large payload: 1.5M chars triggers fragmentation
         payload = "B" * 1500000
         result = self.orchestrator.process_hypercontext("analyze", payload)
         self.assertEqual(result["orchestration_status"], "Success")
-        # Should have split once: results[0] and results[1] (both under 1M)
-        self.assertEqual(len(result["results"]), 2)
+        # results list should contain dicts with 'peek' and 'recursion'
+        self.assertIn("peek", result["results"][0])
+        self.assertIn("recursion", result["results"][0])
         self.assertEqual(result["total_tokens"], 1500000)
 
-    def test_performance_report(self):
-        payload = "C" * 10000
-        self.orchestrator.process_hypercontext("test", payload)
-        report = self.orchestrator.get_performance_report()
-        self.assertEqual(report["tokens_processed"], 10000)
-        self.assertGreater(report["estimated_token_savings"], 0)
+    def test_repl_state_history(self):
+        payload = "C" * 100
+        self.orchestrator.process_hypercontext("test_task", payload)
+        history = self.orchestrator.repl.history
+        self.assertEqual(len(history), 1)
+        self.assertEqual(history[0]["snippet"], "test_task")
 
 if __name__ == '__main__':
     unittest.main()
