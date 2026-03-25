@@ -11,8 +11,6 @@ class HolographicWeightEncoder:
     def __init__(self, weight_shape):
         self.weight_shape = weight_shape
         self.flat_dim = np.prod(weight_shape)
-        # Ensure flat_dim is a power of 2 for FFT/Hadamard efficiency if needed,
-        # but we'll use FFT which is general.
 
     def encode(self, weights: torch.Tensor) -> torch.Tensor:
         """
@@ -49,15 +47,11 @@ class HolographicWeightEncoder:
         h_weights = self.encode(weights)
         damaged_h = self.simulate_erasure(h_weights, erasure_ratio)
         recovered = self.decode(damaged_h)
-
-        # Scaling correction: since we lost energy, we might need to scale back
-        # but for holographic properties, the pattern is what matters.
-        # In a real ECC, we'd have parity, here we rely on the distributed nature.
         return recovered
 
 class HolographicLayer(nn.Module):
     """
-    طبقة عصبية هولوغرافية محمية ضد التخريب.
+    طبقة عصبية هولوغرافية محمية ضد التخريب - GPU Ready.
     A neural layer protected by holographic weight encoding.
     """
     def __init__(self, input_dim, output_dim):
@@ -68,8 +62,12 @@ class HolographicLayer(nn.Module):
         self.encoder = HolographicWeightEncoder((output_dim, input_dim))
 
     def forward(self, x, damaged=False, erasure_ratio=0.2):
+        """
+        Forward pass. weights are already on the correct device as part of the module.
+        """
         if damaged:
             # Simulate inference with damaged weights recovered from holographic field
+            # Note: recover_weights operations happen on the device of self.weights
             w_eff = self.encoder.recover_weights(self.weights, erasure_ratio)
         else:
             w_eff = self.weights
