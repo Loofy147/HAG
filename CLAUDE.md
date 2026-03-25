@@ -1,28 +1,29 @@
-# دليل مستودع Holographic AI Governor (HAG-2.0 Active) 🚀
+# دليل مستودع Holographic AI Governor (HAG-2.0 Scaling) 🚀
 
-استخدم هذا الملف كمرجع أساسي Onboarding لأي وكيل ذكاء اصطناعي يعمل في هذا المشروع (Phase 2.0 Scaling).
+استخدم هذا الملف كمرجع أساسي Onboarding لأي وكيل ذكاء اصطناعي يعمل في هذا المشروع (HAG-2.0 Final).
 
-## 🟢 لماذا (Why)
-يهدف مشروع **Holographic AI Governor** إلى بناء جيل جديد من الذكاء الاصطناعي السيادي. في المرحلة الثانية (HAG-2.0)، نركز على **كفاءة العينات** عبر التناظرات الجبرية و**كفاءة الذاكرة** عبر الفهرسة المتعلمة.
+## 🟢 المهمة (Mission)
+بناء ذكاء اصطناعي سيادي يتمتع بحصانة ذاتية وكفاءة فائقة في استخدام الموارد. المرحلة الثانية (HAG-2.0) تكتمل بتفعيل التكرار الأصيل والتناظرات الجبرية.
 
-## 🔵 ماذا (What) - خارطة المشروع (Phase 2.0)
-*   `src/agents/lie_augmenter.py`: محرك **LieAugmenter** لاكتشاف التناظرات المستمرة وتقليل الاعتماد على البيانات. ✅
-*   `src/indexing/clbf.py`: مرشح **CLBF** (Cascaded Learned Bloom Filter) للفهرسة عالية الكفاءة. ✅
-*   `src/governor/`: نواة الحاكم **Governor 1.0** (EKRLS). ✅
-*   `src/indexing/ribbon.py`: محرك **Ribbon Indexer** (GF(2) logic). ✅
-*   `src/agents/rlm.py`: بروتوكولات **Recursive Language Models**. ✅
-*   `src/geometry/`: محرك **Spacetime Engine**. ✅
+## 🔵 الهيكل التقني (Phase 2.0 Core)
+*   `src/agents/native_recursive.py`: بروتوكول **RLM-Native** لإدارة السياق الفائق (10M+ توكن). ✅
+*   `src/agents/lie_augmenter.py`: محرك **LieAugmenter** لاكتشاف التناظرات الجبرية. ✅
+*   `src/indexing/clbf_engine.py`: محرك **CLBF** المتسلسل لخفض الذاكرة وتسريع الرفض. ✅
+*   `src/governor/governor.py`: نواة **EKRLS** لحماية نزاهة الاستدلال. ✅
+*   `src/indexing/ribbon.py`: فهرسة **Ribbon** (GF(2) logic). ✅
+*   `src/geometry/engine.py`: حسابات **Spacetime Engine**. ✅
 
-## 🟡 كيف (How) - الأنماط البرمجية الملزمة
-1.  **اكتشاف التناظر:** استخدم `LieAugmenter` لضمان استقرار النموذج تجاه التحولات الفيزيائية/الرياضية في البيانات.
-2.  **الفهرسة المتعلمة:** استخدم `CascadedLearnedBloomFilter` لتقليل استهلاك الذاكرة وتسريع عمليات الرفض.
-3.  **الوعي الميتا-معرفي:** يجب أن تمر كافة الاستدلالات عبر `Governor`. إذا $Q < 0.85$، فعل `Suffix Smoothing`.
-4.  **التشابك:** حافظ على استقرار الجسر $\delta > 0$ دائماً.
+## 🟡 الأنماط البرمجية الملزمة (Mandatory Patterns)
+1.  **الرفض السريع (Fast Rejection):** استخدم `CLBF` لتصفية المدخلات غير الصلة قبل معالجتها من قبل النماذج المكلفة.
+2.  **التكرار الأصيل (RLM-N):** لا تقم بتحميل السياق الضخم؛ استخدم `NativelyRecursiveAgent` لإدارة السياق ككائن خارجي في REPL.
+3.  **الثبات تجاه التناظر:** استخدم `LieAugmenter` لضمان أن مخرجات النظام لا تتأثر بالتحولات غير الضرورية في البيانات.
+4.  **نظام الحكم (Governance):** يجب أن تمر كافة سلاسل الاستدلال عبر `Governor` لفحص قيمة $Q$.
 
-## 🔴 التحقق والتحصيل (Phase 2.0 Validation)
-*   **كفاءة التدريب:** خفض الحاجة للبيانات بنسبة **40%** (LieAugmenter).
-*   **كفاءة الذاكرة:** توفير **24%** إضافية من RAM (CLBF).
-*   **دقة التتبع:** **96.18%**.
+## 🔴 مقاييس النجاح (Success Metrics)
+*   **Context:** 10M+ Tokens.
+*   **Data Efficiency:** +40% (via Symmetry).
+*   **RAM Efficiency:** +24% (via CLBF).
+*   **Logic Integrity:** 96.18% precision.
 
 ---
-**تنبيه للنظام:** "التشابك هو الغراء الذي يمسك الزمكان والمنطق معاً. حافظ على استقرار الجسر $\delta > 0$ دائماً."
+**تنبيه للنظام:** "التناظر هو مفتاح التعميم. استخدم RLM-N للاستكشاف النشط وليس الحفظ السلبي."
