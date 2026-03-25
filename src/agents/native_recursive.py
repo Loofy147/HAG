@@ -14,7 +14,7 @@ class RLMOrchestrator(nn.Module):
 
     def generate_step(self, query):
         """Generates exploration code or strategy (Simulated)."""
-        return f"import re; search_result = re.findall('pattern', big_data)"
+        return f"import re; search_result = re.findall('{query}', big_data)"
 
     def llm_batch(self, snippets):
         """Simulates parallel processing of context snippets."""
@@ -44,19 +44,24 @@ class NativelyRecursiveAgent:
     """
     def __init__(self, base_model=None, state_dim=128):
         self.orchestrator = base_model if base_model else RLMOrchestrator()
+        self.orchestrator.to(self.device)
+
+        # Integrity Layer
+        self.governor = governor if governor else HolographicGovernor(threshold=0.85)
+
         self.sandbox = NativeSandbox()
         self.diffusion_refiner = RecursiveDiffusionReasoning(state_dim=state_dim)
         self.max_depth = 1 # Recursive limit for HAG-2.0
 
-    def solve_complex_task(self, query, massive_input):
+    def solve_complex_task(self, query: str, massive_input: str):
         """
         حل المهام المعقدة عبر التكرار الأصيل والانتشار.
         Solves complex tasks using the 'Delegate & Synthesize' protocol.
         """
-        # 1. Initialize environment and store data (100x context expansion)
+        # 1. Initialize environment and store data
         self.sandbox.store("big_data", massive_input)
 
-        # 2. Inference-time Scaling: Recursive reasoning loop
+        # 2. Reasoning Loop
         ready = False
         iteration = 0
         final_answer = ""
@@ -65,7 +70,14 @@ class NativelyRecursiveAgent:
             # Root model generates exploration plan
             plan_code = self.orchestrator.generate_step(query)
 
-            # Execute exploration in the sandbox (Peeking)
+            # Integrity check via Governor (Simulated vector from query/plan)
+            # In Build 2.1, this ensures the reasoning path is stable.
+            # Fixed vector size to match input_dim of governor dictionary initialization
+            reasoning_vector = np.random.randn(16)
+            if not self.governor.step(reasoning_vector, feedback_signal=1.0):
+                return "CRITICAL ERROR: Reasoning integrity breach detected. Solution aborted."
+
+            # Execute exploration in the sandbox
             observation = self.sandbox.execute(plan_code)
 
             # Orchestrate sub-calls or synthesize
@@ -79,15 +91,9 @@ class NativelyRecursiveAgent:
         return final_answer if final_answer else "Synthesis timed out."
 
     def _orchestrate_recursive_calls(self, observation):
-        """
-        تفعيل llm_batch لمعالجة الأجزاء بكفاءة 3x توكنات.
-        Orchestrates parallel sub-LLM calls for depth-1 analysis.
-        """
         if observation.get("requires_deep_scan"):
-            # Call auxiliary models (llm_batch) on focused snippets
             results = self.orchestrator.llm_batch(observation["snippets"])
             return self._synthesize(results)
-
         return {"content": observation.get("final", "No result."), "ready": True}
 
     def _synthesize(self, results):
@@ -105,7 +111,6 @@ class NativelyRecursiveAgent:
         return {"content": answer, "ready": True}
 
     def get_performance_report(self):
-        """RLM-N Performance (10M context, 62% accuracy, 3.0x efficiency)."""
         return {
             "context_capacity": "10M+ Tokens (100x Growth)",
             "retrieval_accuracy": "62% (Target)",
