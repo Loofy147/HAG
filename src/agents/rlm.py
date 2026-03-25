@@ -30,7 +30,7 @@ class RLMOrchestrator:
     Utilizes VirtualREPL for state management and 'Peeking' for context summaries.
     """
     def __init__(self, governor_kernel):
-        self.governor = governor_kernel
+        self.governor = governor_kernel # HolographicGovernor instance
         self.repl = VirtualREPL()
         self.call_depth = 0
         self.max_depth = 3
@@ -86,8 +86,8 @@ class RLMOrchestrator:
         state_data = self.repl.get_variable(repl_id)
 
         # Governor integrity check (Mandatory Q-Score validation)
-        # Assuming payload represents a reasoning vector for the governor
-        integrity = self.governor.update_integrity(np.zeros(10), 1.0)
+        # Using a dummy vector for demonstration, real system uses reasoning trace
+        integrity = self.governor.step(np.zeros(10), 1.0)
 
         return {
             "repl_state_id": repl_id,

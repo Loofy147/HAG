@@ -1,11 +1,11 @@
 import unittest
 import numpy as np
 from src.agents.rlm import RLMOrchestrator
-from src.governor.kernel import GovernorKernelEKRLS
+from src.governor.governor import HolographicGovernor
 
 class TestRLMOrchestrator(unittest.TestCase):
     def setUp(self):
-        self.governor = GovernorKernelEKRLS()
+        self.governor = HolographicGovernor()
         self.orchestrator = RLMOrchestrator(self.governor)
 
     def test_context_decomposition_with_peek(self):
