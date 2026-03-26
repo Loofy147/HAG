@@ -30,11 +30,6 @@ class SpacetimeEngine:
             "is_stable": delta > 0.001
         }
 
-    def get_emergent_volume(self, metric_tensor):
-        """V = sqrt(det(g))."""
-        det = np.linalg.det(metric_tensor)
-        return np.sqrt(np.abs(det))
-
     def get_performance_report(self):
         """Build 4.0 Metadata."""
         return {

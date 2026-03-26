@@ -1,0 +1,2 @@
+[console_scripts]
+hag-cli = src.cli.main:main
