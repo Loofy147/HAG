@@ -1,8 +1,8 @@
 Metadata-Version: 2.4
 Name: holographic-ai-governor
-Version: 4.0.0
+Version: 4.0.1
 Summary: HAG-Desktop Build 4.0: Sovereign AI Desktop Agent System with LGA and RLM-N.
-Author: hichambedrani
+Author: loofy147
 License: Sovereign Intelligence License
 Requires-Python: >=3.8
 License-File: LICENSE

@@ -1,10 +1,10 @@
 {
-  "title": "HAG-Desktop Build 4.0: Sovereign AI System",
+  "title": "HAG-Desktop Build 4.0.1: Sovereign AI System",
   "id": "hichambedrani/hag-desktop-v4",
   "licenses": [
     {
       "name": "apache-2.0"
     }
   ],
-  "description": "Holographic AI Governor (HAG-Desktop Build 4.0) is a Sovereign AI system that extends the HAG-OS core into a functional Executive Layer for OS autonomy. It implements a Layered Governance Architecture (LGA) for security, Multimodal Perception for environmental awareness, and Recursive Self-Improvement (RSI) protocols. This dataset contains the full source code, scripts, and benchmarking tools for HAG-Desktop V4."
+  "description": "Holographic AI Governor (HAG-Desktop Build 4.0.1) is a Sovereign AI system. This update (v4.0.1) fix the Spacetime Engine get_emergent_volume method and updates authorship to loofy147 for PyPI parity."
 }

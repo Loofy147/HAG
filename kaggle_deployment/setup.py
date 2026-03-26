@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="holographic-ai-governor",
-    version="4.0.0",
+    version="4.0.1",
     packages=find_packages(),
     install_requires=[
         "numpy>=1.24.0",
@@ -16,7 +16,7 @@ setup(
             'hag-cli=src.cli.main:main',
         ],
     },
-    author="hichambedrani",
+    author="loofy147",
     description="HAG-Desktop Build 4.0: Sovereign AI Desktop Agent System with LGA and RLM-N.",
     license="Sovereign Intelligence License",
     python_requires=">=3.8",
