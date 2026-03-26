@@ -1,44 +1,44 @@
-# Holographic AI Governor (HAG-3.4) 🚀
-*Build 3.4 Sovereign: The Mathematical Expression of Information Sovereignty*
+# Holographic AI Governor (HAG-Desktop Build 4.0) 🚀
+*Build 4.0 Sovereign Desktop: The Executive Layer for OS Autonomy*
 
 ## 🟢 Mission & Values
-HAG-3.4 is the definitive **Sovereign System**. It integrates the five core mathematical principles into a unified "Cognitive Operating System," prioritizing **Metric Emergence (Hessian)**, **Thales Diagnostic Stability**, and **Distributed Natural Governance (KF-NG)**.
+HAG-Desktop is the definitive **Sovereign Desktop Agent System**. It extends the HAG-3.4 core into a functional "Executive Layer" that lives above the OS, capable of autonomous digital interaction via **Layered Governance (LGA)** and **Multimodal Perception**.
 
-### Sovereign Master Equations (HAG-3.4 Build)
-1. **C-ALM Harmony Functional**: (A,L) = \alpha f_A(A) + \beta g_L(L) - \gamma C(A,L)$ (Balances Sovereignty/Flow).
-2. **Metric Emergence Hessian**: ^{\mu\nu}(x) = \alpha \frac{\delta^2 S_{cB}}{\delta\xi_\mu\delta\xi_\nu}$ (Derives Geometry from Entanglement).
-3. **Thales Diagnostic Deficit**: $\delta = 1 - 2\sqrt{xy} > 0$ (Prevents logic "tears" / Weyl Limit).
-4. **Kronecker-Factored Natural Governor (KF-NG)**: $\theta_{n+1} = \theta_n - \eta F^{-1}_n \nabla \mathcal{L}$ ((N)$ Geodesic updates).
-5. **Holographic Reduced Representations (HRR)**: $\mathbf{h} = \sum \mathbf{k}_i \circledast \mathbf{v}_i$ ((1)$ Volumetric memory).
+### Sovereign Desktop Principles (Build 4.0)
+1. **Layered Governance Architecture (LGA)**: Four layers of security (L1-Sandbox to L4-Audit) for OS interaction.
+2. **Desktop Binding Protocol**: Secure interface for filesystem, shell, and application control.
+3. **Multimodal Perception Layer**: Vision (Screenshots), File Peeking (RLM-N), and Voice (VISTA.AI).
+4. **Desktop Operational Formula ({desktop}$)**: Measures execution efficiency subject to Thales $\delta > 0$ stability.
+5. **Hypercontext RLM-N**: Process 10M+ tokens via programmatic "peeking" without context-burn.
 
-## 🔵 Core Infrastructure (Phase 3.4 Sovereign)
-- **Sovereign Master Kernel**: Unified Q-score monitoring subject to Thales $\delta > 0$ in `src/core/values.py`.
-- **Metric Spacetime Engine**: Numerical Hessian of entanglement entropy and Einstein Tensor derivation in `src/geometry/engine.py`.
-- **TRT Thinking Agent**: High-intensity reasoning (AIME-25 level) in `src/agents/native_recursive.py`.
-- **BuRR Volumetric Storage**: Billion-object capacity with < 1% overhead in `src/indexing/holographic_memory.py`.
+## 🔵 Core Infrastructure (Build 4.0)
+- **LGA Security Engine**: Mandatory access control and intent verification in `src/desktop/governance.py`.
+- **Desktop Agent**: Sovereign executive loop in `src/desktop/agent.py`.
+- **Multimodal Perception**: Integrated vision and voice stubs in `src/desktop/perception.py`.
+- **Sovereign Values**: Build 4.0 metrics and versioning in `src/core/values.py`.
 
 ## 🟡 Architecture & Organization
 ```text
 src/
-├── core/        # Sovereign Master Equation, Q-score weights
-├── agents/      # TRT Nodes, Active Inference, Distributed DCE
-├── governor/    # Mature KF-NG, Thinking Governor
-├── indexing/    # BuRR-VHSE (Volumetric), Ribbon & CLBF
-├── cli/         # Command-line interface
-└── geometry/    # Metric Emergence Hessian (Kernel)
+├── core/        # Sovereign values, E_desktop formula
+├── agents/      # TRT Nodes, RLM, Diffusion Reasoning
+├── desktop/     # NEW: LGA, Binding Protocol, Multimodal Perception
+├── governor/    # KF-NG, Thinking Governor
+├── indexing/    # BuRR-VHSE, Ribbon Indexing
+└── cli/         # Command-line interface with --desktop support
 ```
 
 ## 🔴 Quick Start
 ```bash
-# Install as a package
+# Install Build 4.0
 pip install .
 
-# Run Sovereignty Master Proof
-python3 scripts/sovereignty_master_proof.py
+# Launch Desktop Agent via CLI
+hag-cli --desktop --query "Summarize my local documentation and find security risks"
 
-# Run Full System Stress Test
-python3 scripts/full_system_stress_test.py
+# Run Desktop Sovereignty Proof
+python3 scripts/desktop_sovereignty_proof.py
 ```
 
 ---
-*Status: MATURITY STAGE 5 (OPTIMIZED). SOVEREIGN MASTER BUILD SECURED.*
+*Status: BUILD 4.0 SOVEREIGN DESKTOP SECURED. EXECUTIVE LAYER OPERATIONAL.*

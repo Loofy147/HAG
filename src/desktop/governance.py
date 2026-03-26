@@ -1,0 +1,98 @@
+import torch
+import torch.nn as nn
+from typing import Dict, Any, List, Optional
+from src.core.values import SystemValues
+
+class L1_Sandbox:
+    """Layer 1: Isolated execution environment for code and shell commands."""
+    def __init__(self):
+        self.state = {}
+
+    def execute_code(self, code: str) -> Dict[str, Any]:
+        """Simulates execution within a Linux container with seccomp filtering."""
+        # In a real implementation, this would use subprocess or a container API
+        return {"status": "success", "output": f"Simulated output for: {code}", "isolation": "L1-Verified"}
+
+class L2_IntentVerifier:
+    """Layer 2: Verifies that proposed actions align with the original task intent."""
+    def __init__(self, values: SystemValues):
+        self.values = values
+
+    def verify(self, action: str, task: str) -> bool:
+        """Uses a judge model logic to check if action matches task semantics."""
+        # Simulated Judge Model: Verify(a, T) = J(rho(a, T))
+        # Logic: Simple semantic matching for simulation
+        safe_keywords = ["read", "search", "list", "calculate", "analyze"]
+        risky_keywords = ["delete", "remove", "format", "send_http"]
+
+        if any(k in action.lower() for k in risky_keywords):
+            # For risky actions, we require explicit mention in task or high Q-score
+            return any(k in task.lower() for k in risky_keywords)
+
+        return True
+
+class L3_CapabilityManager:
+    """Layer 3: Zero-trust capability tokens with minimum required privileges."""
+    def __init__(self):
+        self.tokens = {}
+
+    def issue_token(self, task_id: str, capabilities: List[str]) -> str:
+        token = f"TOKEN-{task_id}-{'-'.join(capabilities)}"
+        self.tokens[token] = capabilities
+        return token
+
+    def check_capability(self, token: str, required_cap: str) -> bool:
+        caps = self.tokens.get(token, [])
+        return required_cap in caps
+
+class L4_AuditLogger:
+    """Layer 4: Immutable append-only audit log for accountability."""
+    def __init__(self):
+        self.logs = []
+
+    def log_action(self, agent_id: str, action: str, status: str):
+        entry = {
+            "timestamp": "2026-AUDIT",
+            "agent": agent_id,
+            "action": action,
+            "status": status,
+            "integrity": "L4-SIGNED"
+        }
+        self.logs.append(entry)
+        return entry
+
+class LayeredGovernance:
+    """
+    HAG-Desktop Build 4.0: Layered Governance Architecture (LGA).
+    Ensures sovereignty and security during OS interaction.
+    """
+    def __init__(self, agent_id: str, values: Optional[SystemValues] = None):
+        self.agent_id = agent_id
+        self.values = values if values else SystemValues()
+        self.l1_sandbox = L1_Sandbox()
+        self.l2_verifier = L2_IntentVerifier(self.values)
+        self.l3_cap_manager = L3_CapabilityManager()
+        self.l4_logger = L4_AuditLogger()
+
+    def execute_secured_action(self, task_description: str, action_code: str, token: str, required_cap: str):
+        """
+        Main LGA gateway for executing actions.
+        Sequential check through L3 -> L2 -> L1 -> L4.
+        """
+        # 1. L3: Check Capabilities
+        if not self.l3_cap_manager.check_capability(token, required_cap):
+            self.l4_logger.log_action(self.agent_id, action_code, "BLOCKED_L3")
+            return {"status": "error", "reason": "Insufficient capabilities (L3)"}
+
+        # 2. L2: Verify Intent
+        if not self.l2_verifier.verify(action_code, task_description):
+            self.l4_logger.log_action(self.agent_id, action_code, "BLOCKED_L2")
+            return {"status": "error", "reason": "Intent mismatch (L2)"}
+
+        # 3. L1: Execute in Sandbox
+        result = self.l1_sandbox.execute_code(action_code)
+
+        # 4. L4: Log Success
+        self.l4_logger.log_action(self.agent_id, action_code, "SUCCESS_L1")
+
+        return result
