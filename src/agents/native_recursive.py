@@ -63,17 +63,17 @@ class NativelyRecursiveAgent:
         self.reasoning_traces = []
 
     def solve_complex_task(self, query: str, massive_input: str):
-        """Backward compatibility with Build 2.1 tests."""
+        """Backward compatibility with Build 4.0 (Unified) tests."""
         return self.evolve(massive_input)
 
     def entangle(self, peer_agent):
-        """HAG-3.3/3.4: Merge consciousness with a peer node."""
+        """HAG-OS Build 4.0: Merge consciousness with a peer node."""
         peer_skills = torch.randn(self.vhse.dim).to(self.device)
         return self.dce_node.entangle_with_peer(peer_agent.agent_id, peer_skills)
 
     def test_time_recursive_thinking(self, query: str, iterations: int = 25):
         """
-        TRT Mechanism (Build 3.4/4.0).
+        TRT Mechanism (Build 4.0 (Unified)/4.0).
         High-intensity reasoning cycles for complex problem solving (AIME-25).
         """
         print(f"HAG-4.0 TRT: Initiating high-depth thinking for query - {query}")
@@ -171,7 +171,7 @@ class NativelyRecursiveAgent:
         crystallized = self.diffusion_refiner.solve_with_diffusion(q_vec, c_vec)
 
         num_subcalls = len(observation.get("snippets", []))
-        answer = f"Crystallized Answer (Energy: {crystallized['final_energy']:.4f}) from {num_subcalls} RLM-N sub-calls. [HAG-3.4] [Smoothed P={smoothed_prob:.4f}]"
+        answer = f"Crystallized Answer (Energy: {crystallized['final_energy']:.4f}) from {num_subcalls} RLM-N sub-calls. [HAG-OS Build 4.0] [Smoothed P={smoothed_prob:.4f}]"
 
         return {
             "content": answer,

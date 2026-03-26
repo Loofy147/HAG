@@ -44,7 +44,6 @@ class ActiveBayesianUnit:
         """
         q_score = self.values.get_aggregate_q_score(proposed_scores)
         delta = self.values.calculate_thales_delta(*schmidt_params)
-
         is_sovereign = self.values.verify_sovereignty_master_equation(proposed_scores, schmidt_params)
 
         return {
@@ -56,7 +55,7 @@ class ActiveBayesianUnit:
 
 class ThinkingGovernor:
     """
-    HAG-3.0/4.0 Thinking Governor.
+    HAG-OS Build 4.0 Thinking Governor.
     Monitors uncertainty and manages cognitive health for RSI.
     """
     def __init__(self, threshold: float = 0.943):
@@ -66,12 +65,9 @@ class ThinkingGovernor:
         self.bayesian = ActiveBayesianUnit(values=SystemValues())
 
     def monitor_reasoning(self, reasoning_trace: Dict[str, Any]):
-        """
-        Evaluates the integrity of a reasoning step.
-        """
+        """Evaluates the integrity of a reasoning step."""
         uncertainty = reasoning_trace.get("uncertainty", 0.0)
         confidence = 1.0 - uncertainty
-
         self.uncertainty_history.append(uncertainty)
 
         if confidence < self.threshold:
@@ -83,9 +79,18 @@ class ThinkingGovernor:
 
         return {"status": "STABLE", "confidence": confidence}
 
+    def get_performance_report(self):
+        """Audit report for Thinking Governor."""
+        return {
+            "type": "Thinking Governor (Metacognitive)",
+            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "threshold": self.threshold,
+            "history_depth": len(self.uncertainty_history)
+        }
+
 class TemporalCoherenceTracker:
     """
-    Manages "Snapshots" of the agent's evolution (Build 3.0/4.0).
+    Manages "Snapshots" of the agent's evolution (Build 4.0 (Unified)/4.0).
     Achieves 50:1 context compression for long-term memory.
     """
     def __init__(self, compression_ratio: float = 50.0):
@@ -93,10 +98,7 @@ class TemporalCoherenceTracker:
         self.snapshots = []
 
     def create_snapshot(self, full_context: str):
-        """
-        Compresses history into a sovereign snapshot.
-        Ensures Temporal Coherence during RSI cycles.
-        """
+        """Compresses history into a sovereign snapshot."""
         summary_len = max(1, len(full_context) // int(self.compression_ratio))
         snapshot = {
             "timestamp": "2026-SNAPSHOT",

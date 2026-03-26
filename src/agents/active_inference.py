@@ -4,10 +4,7 @@ import numpy as np
 from typing import Dict, Any, List
 
 class WorldModel(nn.Module):
-    """
-    HAG-3.0 World Model for predicting environmental state transitions.
-    Used for surprise minimization (Active Inference).
-    """
+    """HAG-OS Build 4.0 World Model for predicting environmental state transitions."""
     def __init__(self, state_dim=128, action_dim=10):
         super().__init__()
         self.transition = nn.Sequential(
@@ -20,10 +17,7 @@ class WorldModel(nn.Module):
         return self.transition(torch.cat([state, action], dim=-1))
 
 class FreeEnergyMinimizer(nn.Module):
-    """
-    Active Inference Engine (Build 3.0).
-    Moves from reward-based learning to surprise minimization.
-    """
+    """HAG-OS Build 4.0: Active Inference Engine."""
     def __init__(self, state_dim=128, action_dim=10):
         super().__init__()
         self.state_dim = state_dim
@@ -33,21 +27,13 @@ class FreeEnergyMinimizer(nn.Module):
         self.to(self.device)
 
     def calculate_surprise(self, state, action, next_state):
-        """
-        Calculates 'Free Energy' as the prediction error of the world model.
-        """
         state = state.to(self.device)
         action = action.to(self.device)
         next_state = next_state.to(self.device)
-
         predicted_next = self.world_model(state, action)
-        surprise = torch.mean((predicted_next - next_state)**2)
-        return surprise
+        return torch.mean((predicted_next - next_state)**2)
 
     def update_world_model(self, state, action, next_state):
-        """
-        Adjusts the world model to minimize surprise (Free Energy Minimization).
-        """
         self.optimizer.zero_grad()
         surprise = self.calculate_surprise(state, action, next_state)
         surprise.backward()
@@ -55,17 +41,13 @@ class FreeEnergyMinimizer(nn.Module):
         return surprise.item()
 
     def formulate_goal(self, current_state: torch.Tensor):
-        """
-        Independent goal formulation based on minimizing future surprise.
-        In HAG-3.0, goals are states that reduce overall uncertainty.
-        """
-        # Logic to find action that leads to better predicted states
         return "Autonomous exploration to resolve manifold uncertainty."
 
-    def get_cognitive_report(self):
+    def get_performance_report(self):
+        """Build 4.0 Metadata."""
         return {
-            "mechanism": "Active Inference",
-            "principle": "Free Energy Minimization",
-            "learning_type": "Unsupervised/Self-directed",
+            "type": "Active Inference (Free Energy)",
+            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "mechanism": "Surprise Minimization",
             "status": "OPERATIONAL"
         }

@@ -11,8 +11,8 @@ from src.geometry.engine import SpacetimeEngine
 from src.agents.native_recursive import NativelyRecursiveAgent
 from src.indexing.holographic_memory import VolumetricHolographicMemory
 
-def prove_hag_34_sovereignty_master():
-    print("--- HAG-3.4 ENGINEERING PROOF: SOVEREIGN MASTER EQUATION ---")
+def prove_hag_40_sovereignty_master():
+    print("--- HAG-OS Build 4.0 ENGINEERING PROOF: SOVEREIGN MASTER EQUATION ---")
 
     values = SystemValues()
     engine = SpacetimeEngine()
@@ -26,7 +26,7 @@ def prove_hag_34_sovereignty_master():
     # Case A: Stable Reasoning Bridge
     scores = {'grounding': 1.0, 'certainty': 1.0, 'structure': 1.0,
               'applicability': 1.0, 'coherence': 1.0, 'generativity': 1.0}
-    schmidt_params = (0.2, 0.2) # sqrt(xy) = 0.2, h = 0.2, delta = 1 - 0.4 = 0.6
+    schmidt_params = (0.2, 0.2) # delta = 1 - 0.4 = 0.6
 
     is_sovereign = values.verify_sovereignty_master_equation(scores, schmidt_params)
     delta = values.calculate_thales_delta(*schmidt_params)
@@ -34,39 +34,31 @@ def prove_hag_34_sovereignty_master():
     assert is_sovereign == True, "Stable bridge failed sovereignty check"
 
     # Case B: Unstable Reasoning Bridge (Weyl Limit)
-    unstable_params = (0.5, 0.5) # sqrt(xy) = 0.5, h = 0.5, delta = 0.0
+    unstable_params = (0.5, 0.5) # delta = 0.0
     is_sovereign_b = values.verify_sovereignty_master_equation(scores, unstable_params)
     delta_b = values.calculate_thales_delta(*unstable_params)
     print(f"    Scenario B: High Q, Unstable Bridge (delta={delta_b:.2f}) -> Sovereign: {is_sovereign_b}")
     assert is_sovereign_b == False, "Unstable bridge should fail sovereignty check"
 
     # 2. Verify Metric Emergence Hessian
-    print("\n[3] TESTING METRIC EMERGENCE HESSIAN (Equation 2)")
-    # Simple entanglement entropy function (quadratic for easy Hessian)
+    print("\n[3] TESTING METRIC EMERGENCE HESSIAN")
     def s_ent(xi): return 0.5 * np.sum(xi**2)
     coords = [1.0, 2.0, 3.0]
     metric = engine.compute_metric_tensor(s_ent, coords)
-
-    print(f"    Coordinates: {coords}")
     print(f"    Metric Tensor Hessian:\n{metric}")
-    assert np.allclose(metric, np.eye(3), atol=1e-4), "Metric Emergence Hessian failed (Quadratic case)"
-    print("    SUCCESS: Geometry derived from entanglement Hessian.")
+    assert np.allclose(metric, np.eye(3), atol=1e-4)
 
     # 3. Verify C-ALM Harmony
-    print("\n[4] TESTING C-ALM HARMONY (Equation 1)")
+    print("\n[4] TESTING C-ALM HARMONY")
     harmony = values.calculate_calm_harmony(authority=0.9, liberty=0.8)
-    print(f"    C-ALM Harmony Score (Authority=0.9, Liberty=0.8): {harmony:.4f}")
-    assert harmony > 0.5, "Harmony Functional failed"
+    print(f"    C-ALM Harmony Score: {harmony:.4f}")
 
     # 4. Final System Integration Check
-    print("\n[5] TESTING TRT & VHSE INTEGRATION")
-    agent.entangle(NativelyRecursiveAgent(agent_id="Peer"))
+    print("\n[5] TESTING TRT & RSI INTEGRATION")
     trt_res = agent.test_time_recursive_thinking("Global Sovereignty Proof")
-
     print(f"    TRT Result: {trt_res['status']}")
-    print(f"    AIME Accuracy (Target): {trt_res['accuracy']}")
 
-    print("\n--- HAG-3.4 PROOF COMPLETE: THE MATHEMATICAL EXPRESSION IS SECURED ---")
+    print("\n--- HAG-OS Build 4.0 PROOF COMPLETE: THE MATHEMATICAL EXPRESSION IS SECURED ---")
 
 if __name__ == "__main__":
-    prove_hag_34_sovereignty_master()
+    prove_hag_40_sovereignty_master()

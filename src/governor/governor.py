@@ -5,7 +5,7 @@ from src.core.values import SystemValues
 
 class HolographicGovernor:
     """
-    محرك Governor 2.1 (HAG-2.1) لتتبع نزاهة الاستدلال.
+    محرك Governor 2.1 (HAG-OS Build 4.0 (Legacy)) لتتبع نزاهة الاستدلال.
     HolographicGovernor: Tracks reasoning integrity and prevents model drift via EKRLS.
     """
     def __init__(self, config_path="configs/bayesian_weights.json", **kwargs):
