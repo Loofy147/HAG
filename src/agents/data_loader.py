@@ -6,7 +6,7 @@ import glob
 
 class GeneralDataLoader:
     """
-    Unified loader for HAG Build 2.1 datasets (Physics, Finance, Legal).
+    Unified loader for HAG Build 4.0 (Unified) datasets (Physics, Finance, Legal).
     """
     def __init__(self, input_dim=16):
         self.input_dim = input_dim

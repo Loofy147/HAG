@@ -18,12 +18,13 @@ class SystemValues:
     Updated for HAG-Desktop Build 4.0: Sovereign Desktop Integration.
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
+        # Default Build 4.0 Values
         self.version = "4.0.0-SOVEREIGN-DESKTOP"
         self.q_weights = QScoreWeights()
         self.q_threshold = 0.984
         self.snapshot_compression_ratio = 50.0
         self.ram_optimization_target = 0.42
-        self.task_accuracy_target = 0.943
+        self.task_accuracy_target = 0.96 # Harmonized to 0.96
         self.aime_accuracy_target = 1.0
         self.error_amplification_limit = 4.4
         self.hallucination_reduction_target = 0.427
@@ -33,26 +34,30 @@ class SystemValues:
         self.desktop_security_target = 0.96 # 96% L1 isolation
         self.rlm_peeking_accuracy = 0.62   # 62% Context peeking
         self.voice_latency_ms_target = 120.0 # < 120ms
-        self.e_desktop_stable_threshold = 20.0 # Min E_desktop for sovereignty (adjusted)
+        self.e_desktop_stable_threshold = 20.0
 
         if os.path.exists(config_path):
             try:
                 with open(config_path, 'r') as f:
                     config = json.load(f)
+                    build = config.get("HAG_Build", {})
+                    self.version = build.get("version", self.version)
+                    self.task_accuracy_target = build.get("task_accuracy", self.task_accuracy_target)
+
+                    kf_ng = config.get("KF_NG", {})
+                    self.q_threshold = kf_ng.get("q_threshold", self.q_threshold)
+
                     w = config.get("Q_Score_Weights", {})
                     self.q_weights = QScoreWeights(
-                        grounding=w.get("Grounding", 0.18),
-                        certainty=w.get("Certainty", 0.22),
-                        structure=w.get("Structure", 0.20),
-                        applicability=w.get("Applicability", 0.18),
-                        coherence=w.get("Coherence", 0.12),
-                        generativity=w.get("Generativity", 0.10)
+                        grounding=w.get("Grounding", self.q_weights.grounding),
+                        certainty=w.get("Certainty", self.q_weights.certainty),
+                        structure=w.get("Structure", self.q_weights.structure),
+                        applicability=w.get("Applicability", self.q_weights.applicability),
+                        coherence=w.get("Coherence", self.q_weights.coherence),
+                        generativity=w.get("Generativity", self.q_weights.generativity)
                     )
-                    self.q_threshold = config.get("KF_NG", {}).get("q_threshold", self.q_threshold)
-                    # Stay at Build 4.0 unless explicitly overridden by config to older versions
-                    self.version = config.get("HAG_Build", {}).get("version", self.version)
-            except:
-                pass
+            except Exception as e:
+                print(f"Warning: Failed to load config: {e}")
 
     def get_aggregate_q_score(self, scores: dict) -> float:
         """Calculates the weighted Q-score based on system values."""
@@ -66,28 +71,18 @@ class SystemValues:
         )
 
     def calculate_thales_delta(self, schmidt_x: float, schmidt_y: float) -> float:
-        """
-        Thales Diagnostic Deficit: delta = 1 - 2*sqrt(xy).
-        Used to monitor the stability of 'Reasoning Bridges' and Desktop execution.
-        """
+        """Thales Diagnostic Deficit: delta = 1 - 2*sqrt(xy)."""
         h_thales = np.sqrt(schmidt_x * schmidt_y)
         delta = 1.0 - 2.0 * h_thales
         return delta
 
     def calculate_calm_harmony(self, authority: float, liberty: float, alpha=0.5, beta=0.5, gamma=0.2) -> float:
-        """
-        C-ALM Harmony Functional: H(A,L) = alpha*f(A) + beta*g(L) - gamma*C(A,L).
-        Balances sovereignty (Authority) and information flow (Liberty).
-        """
+        """C-ALM Harmony Functional."""
         harmony = alpha * authority + beta * liberty - gamma * (authority * liberty)
         return harmony
 
     def verify_sovereignty_master_equation(self, scores: dict, schmidt_params: tuple) -> bool:
-        """
-        Sovereign Master Equation Check: Q subject to delta > 0.
-        """
+        """Sovereign Master Equation Check: Q subject to delta > 0."""
         q_score = self.get_aggregate_q_score(scores)
         delta = self.calculate_thales_delta(*schmidt_params)
-
-        # Stability Condition: Q > q_threshold AND delta > weyl_delta_limit
         return q_score >= self.q_threshold and delta > self.weyl_delta_limit

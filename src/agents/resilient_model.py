@@ -5,7 +5,7 @@ from src.agents.holographic_memory import HolographicLayer
 
 class ResilientHAGModel(nn.Module):
     """
-    نموذج HAG المرن (Build 2.1) - GPU Ready.
+    نموذج HAG المرن (Build 4.0 (Unified)) - GPU Ready.
     ResilientHAGModel: Combines Symmetry-Aware Feature Extraction (LieAugmenter)
     with Robust Holographic Weight Storage.
     Now supports RLM Orchestration protocol.
@@ -46,7 +46,7 @@ class ResilientHAGModel(nn.Module):
 
     def generate_step(self, query):
         """
-        Implementation of the RLM Orchestration protocol for Build 2.1.
+        Implementation of the RLM Orchestration protocol for Build 4.0 (Unified).
         Generates an exploration code or strategy snippet.
         """
         # In a real system, this would be an LLM-head on the resilient backbone.

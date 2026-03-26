@@ -55,7 +55,7 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
 
         # 4. Secure Actuation
         # Example: Search for a file pattern in the 'External Environment'
-        search_command = "grep -r 'HAG-3.4' /home/user/docs"
+        search_command = "grep -r 'HAG-OS Build 4.0' /home/user/docs"
         result = self.binding.execute_shell(task_description, search_command)
 
         # 5. Calculate Efficiency (Build 4.0 Metrics)
@@ -92,3 +92,12 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
             "operational_formula": "E_desktop (Integrated)"
         })
         return base_report
+
+    def get_performance_report(self):
+        """Override to ensure Build 4.0 metrics are included."""
+        report = super().get_performance_report()
+        report.update({
+             "rsi_pipeline": "Study -> Understand -> Test -> Validate -> Generate",
+             "e_desktop_stable_threshold": self.values.e_desktop_stable_threshold
+        })
+        return report

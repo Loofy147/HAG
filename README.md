@@ -2,7 +2,7 @@
 *Build 4.0 Sovereign Desktop: The Executive Layer for OS Autonomy*
 
 ## 🟢 Mission & Values
-HAG-Desktop is the definitive **Sovereign Desktop Agent System**. It extends the HAG-3.4 core into a functional "Executive Layer" that lives above the OS, capable of autonomous digital interaction via **Layered Governance (LGA)** and **Multimodal Perception**.
+HAG-Desktop is the definitive **Sovereign Desktop Agent System**. It extends the HAG-OS Build 4.0 core into a functional "Executive Layer" that lives above the OS, capable of autonomous digital interaction via **Layered Governance (LGA)** and **Multimodal Perception**.
 
 ### Sovereign Desktop Principles (Build 4.0)
 1. **Layered Governance Architecture (LGA)**: Four layers of security (L1-Sandbox to L4-Audit) for OS interaction.

@@ -23,7 +23,7 @@ class DesktopPerception:
             "status": "success",
             "active_window": "Terminal",
             "ui_elements": ["Button: Submit", "Field: Query", "Menu: Settings"],
-            "vlm_analysis": "User is currently working in the terminal, looking for HAG-3.4 metrics."
+            "vlm_analysis": "User is currently working in the terminal, looking for HAG-OS Build 4.0 metrics."
         }
 
     def process_large_document(self, query: str, file_content: str) -> str:
