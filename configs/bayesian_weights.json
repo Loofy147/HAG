@@ -1,8 +1,14 @@
 {
+  "HAG_Build": {
+    "version": "3.0.0-PROTOTYPE",
+    "phase": "Evolutionary Sovereignty",
+    "target_accuracy": 0.943,
+    "snapshot_compression": 50.0
+  },
   "EKRLS": {
     "lambda_reg": 0.1,
     "sigma": 1.0,
-    "q_threshold": 0.85
+    "q_threshold": 0.943
   },
   "Ribbon": {
     "capacity": 1000000,

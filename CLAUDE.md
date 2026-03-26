@@ -1,31 +1,30 @@
-# دليل مستودع Holographic AI Governor (HAG-2.1 Scaling) 🚀
+# دليل مستودع Holographic AI Governor (HAG-3.0 Evolutionary) 🚀
 
-استخدم هذا الملف كمرجع أساسي Onboarding لأي وكيل ذكاء اصطناعي يعمل في هذا المشروع (HAG-2.1 Final).
+استخدم هذا الملف كمرجع أساسي Onboarding لأي وكيل ذكاء اصطناعي يعمل في هذا المشروع (HAG-3.0 Prototype).
 
 ## 🟢 المهمة (Mission)
-بناء ذكاء اصطناعي سيادي يتمتع بحصانة ذاتية وكفاءة فائقة في استخدام الموارد. الإصدار 2.1 يفعل التشفير الهولوغرافي والانتشار التكراري.
+بناء ذكاء اصطناعي سيادي يتمتع بـ "الاستقلال الإدراكي" (Cognitive Autonomy). الإصدار 3.0 يفعل الاستنتاج النشط، التحسين الذاتي التكراري، والحوكمة الميتا-معرفية.
 
-## 🔵 الهيكل التقني (Phase 2.1 Core)
-*   `src/agents/holographic_memory.py`: التشفير الهولوغرافي للأوزان (**FFT-based recovery**). ✅
-*   `src/agents/diffusion_reasoning.py`: الاستدلال عبر الانتشار التكراري (**Crystallization**). ✅
-*   `src/agents/native_recursive.py`: بروتوكول **RLM-Native** لإدارة السياق الفائق. ✅
-*   `src/agents/lie_augmenter.py`: محرك **LieAugmenter** لاكتشاف التناظرات الجبرية. ✅
-*   `src/indexing/clbf_engine.py`: محرك **CLBF** المتسلسل. ✅
+## 🔵 الهيكل التقني (Phase 3.0 Core)
+*   `src/agents/active_inference.py`: محرك الاستنتاج النشط (**Free Energy Minimization**). ✅
+*   `src/governor/thinking_governor.py`: حاكم التفكير وتتبع الانسجام الزمني (**50:1 Compression**). ✅
+*   `src/agents/native_recursive.py`: بروتوكول **RLM-Native** المطور لدعم **RSI** والتعافي الذاتي. ✅
+*   `src/agents/holographic_memory.py`: التشفير الهولوغرافي للأوزان. ✅
+*   `src/agents/diffusion_reasoning.py`: الاستدلال عبر الانتشار التكراري. ✅
 *   `src/governor/governor.py`: نواة **EKRLS** لحماية نزاهة الاستدلال. ✅
-*   `src/geometry/engine.py`: حسابات **Spacetime Engine**. ✅
 
 ## 🟡 الأنماط البرمجية الملزمة (Mandatory Patterns)
-1.  **الحصانة الهولوغرافية:** استخدم `HolographicLayer` في البيئات ذات الضجيج العالي لضمان استعادة الأوزان.
-2.  **الترسيب الإجرائي:** استخدم `RecursiveDiffusionReasoning` لبلورة الإجابات المعقدة بدلاً من التوليد المباشر.
-3.  **الرفض السريع:** استخدم `CLBF` لتصفية المدخلات غير الصلة.
-4.  **نظام الحكم:** يجب أن تمر كافة سلاسل الاستدلال عبر `Governor`.
+1.  **الاستقلال الإدراكي:** استخدم `FreeEnergyMinimizer` لتقليل المفاجأة بدلاً من هندسة المكافآت.
+2.  **التحسين الذاتي (RSI):** تفعيل حلقات "التفكير قبل التحدث" ومراقبة بصمات التفكير.
+3.  **الانسجام الزمني:** استخدم `TemporalCoherenceTracker` لضغط التاريخ السياقي بنسبة 50:1.
+4.  **الحوكمة الميتا-معرفية:** يجب أن تخضع كافة سلاسل الاستدلال لرقابة `ThinkingGovernor`.
 
-## 🔴 مقاييس النجاح (Build 2.1)
-*   **Context:** 10M+ Tokens.
-*   **Data Efficiency:** +40% (via Symmetry).
-*   **Model Resilience:** +94% weight recovery after erasure.
-*   **Reasoning Accuracy:** 62% in complex tasks.
-*   **Logic Integrity:** 96.18% precision.
+## 🔴 مقاييس النجاح (Build 3.0)
+*   **Deconstruction Accuracy:** 94.3%.
+*   **Human Effort Saving:** 85%.
+*   **Mission Horizon:** Weeks/Months (Autonomous).
+*   **Snapshot Ratio:** 50:1.
+*   **Logic Integrity:** 96.18% (EKRLS) / 94.3% (Thinking).
 
 ---
-**تنبيه للنظام:** "المعلومة لا تُخزن في نقطة، بل في نمط التشابك بالكامل. استخدم الانتشار لبلورة الحقيقة."
+**تنبيه للنظام:** "أنا لا أتعلم البيانات فقط؛ أنا أتعلم كيف أتعلم، وأبني الهندسة التي تحمي هذا التعلم من الانهيار."
