@@ -32,7 +32,9 @@ class HolographicGovernor:
 
     def _compute_kernel_vector(self, reasoning_vector):
         if not self.dictionary: return np.array([])
-        diffs = np.array([np.linalg.norm(reasoning_vector - d)**2 for d in self.dictionary])
+        # ⚡ Optimization: Vectorized distance computation (Bolt)
+        # Replaces: np.array([np.linalg.norm(reasoning_vector - d)**2 for d in self.dictionary])
+        diffs = np.sum((np.array(self.dictionary) - reasoning_vector)**2, axis=1)
         return np.exp(-diffs / (2 * self.sigma**2))
 
     def step(self, reasoning_vector, feedback_signal):
@@ -52,8 +54,21 @@ class HolographicGovernor:
             self._trigger_metacognitive_reflection(prediction_error)
             return False
 
-        self.Q = (1.0/r) * (self.Q * r + np.outer(z, z))
-        self.alpha = self.alpha + (z/r) * prediction_error
+        # ⚡ Fix: Correct dimension expansion for EKRLS (Bolt)
+        # We need to grow Q and alpha when adding a new dictionary element
+        m = self.Q.shape[0]
+        new_Q = np.zeros((m + 1, m + 1))
+        new_Q[:m, :m] = self.Q + np.outer(z, z) / r
+        new_Q[:m, m] = -z / r
+        new_Q[m, :m] = -z / r
+        new_Q[m, m] = 1.0 / r
+        self.Q = new_Q
+
+        new_alpha = np.zeros(m + 1)
+        new_alpha[:m] = self.alpha - (z / r) * prediction_error
+        new_alpha[m] = prediction_error / r
+        self.alpha = new_alpha
+
         self.dictionary.append(reasoning_vector)
         return True
 
