@@ -1,6 +1,6 @@
 {
   "HAG_Build": {
-    "version": "4.0.0-SOVEREIGN-DESKTOP",
+    "version": "4.0.1-SOVEREIGN-DESKTOP",
     "phase": "Desktop Sovereignty (Build 4.0)",
     "maturity_stage": "Stage 5: Optimized",
     "task_accuracy": 0.96,

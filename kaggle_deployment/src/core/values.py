@@ -19,7 +19,7 @@ class SystemValues:
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
         # Default Build 4.0 Values
-        self.version = "4.0.0-SOVEREIGN-DESKTOP"
+        self.version = "4.0.1-SOVEREIGN-DESKTOP"
         self.q_weights = QScoreWeights()
         self.q_threshold = 0.984
         self.snapshot_compression_ratio = 50.0

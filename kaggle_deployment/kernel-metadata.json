@@ -1,11 +1,11 @@
 {
-  "id": "hichambedrani/hag-v4-execution-engine",
+  "id": "hichambedrani/hag-desktop-v4-execution-engine",
   "title": "HAG-Desktop V4 Execution Engine",
   "code_file": "kaggle_main.py",
   "language": "python",
   "kernel_type": "script",
   "is_private": "false",
-  "enable_gpu": "true",
+  "enable_gpu": "false",
   "enable_tpu": "false",
   "enable_internet": "true",
   "dataset_sources": [
