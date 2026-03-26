@@ -14,13 +14,14 @@ class QScoreWeights:
 class SystemValues:
     """
     Central repository for HAG system constants and Bayesian values.
-    Updated for HAG-3.0: Evolutionary Sovereignty.
+    Updated for HAG-3.2: Volumetric Spacetime Memory & KF-NG.
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
-        self.version = "3.0.0-PROTOTYPE"
+        self.version = "3.2.0-PROTOTYPE"
         self.q_weights = QScoreWeights()
-        self.q_threshold = 0.943 # Updated for HAG-3.0 precision
-        self.snapshot_compression_ratio = 50.0 # 50:1 Target
+        self.q_threshold = 0.982 # Updated for HAG-3.2 precision
+        self.snapshot_compression_ratio = 50.0 # Dark Spacetime Snapshots
+        self.ram_optimization_target = 0.42 # 42% Saving
 
         if os.path.exists(config_path):
             try:
@@ -35,7 +36,7 @@ class SystemValues:
                         coherence=w.get("Coherence", 0.12),
                         generativity=w.get("Generativity", 0.10)
                     )
-                    self.q_threshold = config.get("EKRLS", {}).get("q_threshold", self.q_threshold)
+                    self.q_threshold = config.get("KF_NG", {}).get("q_threshold", self.q_threshold)
                     self.version = config.get("HAG_Build", {}).get("version", self.version)
             except:
                 pass
