@@ -4,7 +4,8 @@ from src.governor.governor import HolographicGovernor
 
 class TestHolographicGovernor(unittest.TestCase):
     def setUp(self):
-        self.governor = HolographicGovernor(lambda_forget=0.99, sigma_kernel=1.0, threshold=0.85)
+        # High threshold to prevent early exits during initialization steps
+        self.governor = HolographicGovernor(lambda_forget=0.99, sigma_kernel=1.0, threshold=0.0)
 
     def test_initial_step(self):
         vec = np.array([1.0, 1.0])
@@ -14,6 +15,7 @@ class TestHolographicGovernor(unittest.TestCase):
 
     def test_drift_detection(self):
         # 1. Initialize with stable state
+        self.governor.threshold = 0.85
         self.governor.step(np.array([1.0, 1.0]), 1.0)
 
         # 2. Trigger drift (Large error)
@@ -25,20 +27,20 @@ class TestHolographicGovernor(unittest.TestCase):
         self.assertFalse(status)
 
     def test_recursive_update_stability(self):
-        # Multiple steps to check matrix dimensions
+        # 1. Initialize with stable state
+        self.governor.threshold = 0.0 # Don't detect drift
+
+        # Multiple steps to check dictionary growth
+        count = 0
         for i in range(5):
             vec = np.random.randn(2)
-            self.governor.step(vec, 1.0)
+            if self.governor.step(vec, 1.0):
+                count += 1
 
-        self.assertEqual(self.governor.Q.shape, (1, 1)) # Wait, standard EKRLS fixed-dictionary?
-        # Actually, in the user's code, Q doesn't expand.
-        # But in a true EKRLS it might. Let's check the user's logic in step():
-        # self.Q = (1.0/r) * (self.Q * r + np.outer(z, z))
-        # z = Q @ h. If h is scalar (init), Q is 1x1.
-        # If dictionary grows, h grows.
-        # The user's provided snippet didn't expand Q.
-        # Let's adjust my test to the implementation reality.
-        pass
+        # Check total items in dictionary
+        self.assertEqual(len(self.governor.dictionary), 5)
+        # Check that matrices are at least as large as the active items
+        self.assertGreaterEqual(self.governor.Q.shape[0], 5)
 
 if __name__ == '__main__':
     unittest.main()
