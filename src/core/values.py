@@ -15,10 +15,10 @@ class QScoreWeights:
 class SystemValues:
     """
     Central repository for HAG system constants and Bayesian values.
-    Updated for HAG-3.4: Sovereign Master Equation & Thales Diagnostic.
+    Updated for HAG-Desktop Build 4.0: Sovereign Desktop Integration.
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
-        self.version = "3.4.0-SOVEREIGN"
+        self.version = "4.0.0-SOVEREIGN-DESKTOP"
         self.q_weights = QScoreWeights()
         self.q_threshold = 0.984
         self.snapshot_compression_ratio = 50.0
@@ -28,6 +28,12 @@ class SystemValues:
         self.error_amplification_limit = 4.4
         self.hallucination_reduction_target = 0.427
         self.weyl_delta_limit = 0.001
+
+        # Build 4.0 Desktop Metrics
+        self.desktop_security_target = 0.96 # 96% L1 isolation
+        self.rlm_peeking_accuracy = 0.62   # 62% Context peeking
+        self.voice_latency_ms_target = 120.0 # < 120ms
+        self.e_desktop_stable_threshold = 20.0 # Min E_desktop for sovereignty (adjusted)
 
         if os.path.exists(config_path):
             try:
@@ -43,6 +49,7 @@ class SystemValues:
                         generativity=w.get("Generativity", 0.10)
                     )
                     self.q_threshold = config.get("KF_NG", {}).get("q_threshold", self.q_threshold)
+                    # Stay at Build 4.0 unless explicitly overridden by config to older versions
                     self.version = config.get("HAG_Build", {}).get("version", self.version)
             except:
                 pass
@@ -61,7 +68,7 @@ class SystemValues:
     def calculate_thales_delta(self, schmidt_x: float, schmidt_y: float) -> float:
         """
         Thales Diagnostic Deficit: delta = 1 - 2*sqrt(xy).
-        Used to monitor the stability of 'Reasoning Bridges'.
+        Used to monitor the stability of 'Reasoning Bridges' and Desktop execution.
         """
         h_thales = np.sqrt(schmidt_x * schmidt_y)
         delta = 1.0 - 2.0 * h_thales
