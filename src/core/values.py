@@ -14,17 +14,19 @@ class QScoreWeights:
 class SystemValues:
     """
     Central repository for HAG system constants and Bayesian values.
-    Updated for HAG-3.3: Distributed Consciousness & Collective Sovereignty.
+    Updated for HAG-3.4: Technical Sovereignty & Optimized Maturity.
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
-        self.version = "3.3.0-PROTOTYPE"
+        self.version = "3.4.0-SOVEREIGN"
         self.q_weights = QScoreWeights()
-        self.q_threshold = 0.982 # Threshold for collective stability
-        self.snapshot_compression_ratio = 50.0 # Infinite Context snapshots
+        self.q_threshold = 0.984 # Final HAG-3.4 tracking threshold
+        self.snapshot_compression_ratio = 50.0
         self.ram_optimization_target = 0.42
         self.task_accuracy_target = 0.943
+        self.aime_accuracy_target = 1.0
+        self.error_amplification_limit = 4.4 # x Factor
         self.hallucination_reduction_target = 0.427
-        self.weyl_delta_limit = 0.001 # ER=EPR Limit
+        self.weyl_delta_limit = 0.001
 
         if os.path.exists(config_path):
             try:
