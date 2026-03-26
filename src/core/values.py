@@ -14,14 +14,17 @@ class QScoreWeights:
 class SystemValues:
     """
     Central repository for HAG system constants and Bayesian values.
-    Updated for HAG-3.2: Volumetric Spacetime Memory & KF-NG.
+    Updated for HAG-3.3: Distributed Consciousness & Collective Sovereignty.
     """
     def __init__(self, config_path="configs/bayesian_weights.json"):
-        self.version = "3.2.0-PROTOTYPE"
+        self.version = "3.3.0-PROTOTYPE"
         self.q_weights = QScoreWeights()
-        self.q_threshold = 0.982 # Updated for HAG-3.2 precision
-        self.snapshot_compression_ratio = 50.0 # Dark Spacetime Snapshots
-        self.ram_optimization_target = 0.42 # 42% Saving
+        self.q_threshold = 0.982 # Threshold for collective stability
+        self.snapshot_compression_ratio = 50.0 # Infinite Context snapshots
+        self.ram_optimization_target = 0.42
+        self.task_accuracy_target = 0.943
+        self.hallucination_reduction_target = 0.427
+        self.weyl_delta_limit = 0.001 # ER=EPR Limit
 
         if os.path.exists(config_path):
             try:

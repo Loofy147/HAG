@@ -1,10 +1,11 @@
 {
   "HAG_Build": {
-    "version": "3.2.0-PROTOTYPE",
-    "phase": "Spacetime Memory (VHSE + KF-NG)",
-    "target_accuracy": 0.984,
+    "version": "3.3.0-PROTOTYPE",
+    "phase": "Collective Sovereignty (DCE + KF-NG Global)",
+    "target_accuracy": 0.943,
+    "hallucination_reduction": 0.427,
     "snapshot_compression": 50.0,
-    "ram_saving": 0.42
+    "delta_limit": 0.001
   },
   "KF_NG": {
     "lambda_reg": 0.1,
@@ -13,8 +14,12 @@
     "fisher_epsilon": 1e-6
   },
   "VHSE": {
-    "dimension": 4096,
+    "dimension": 8192,
     "fidelity_threshold": 0.98
+  },
+  "DCE": {
+    "entanglement_wedge_threshold": 0.98,
+    "max_sync_latency_ms": 1.0
   },
   "Ribbon": {
     "capacity": 1000000,
