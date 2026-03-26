@@ -92,3 +92,12 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
             "operational_formula": "E_desktop (Integrated)"
         })
         return base_report
+
+    def get_performance_report(self):
+        """Override to ensure Build 4.0 metrics are included."""
+        report = super().get_performance_report()
+        report.update({
+             "rsi_pipeline": "Study -> Understand -> Test -> Validate -> Generate",
+             "e_desktop_stable_threshold": self.values.e_desktop_stable_threshold
+        })
+        return report
