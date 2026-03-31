@@ -5,11 +5,13 @@ from src.agents.native_recursive import NativelyRecursiveAgent
 from src.desktop.governance import LayeredGovernance
 from src.desktop.binding import DesktopBinding
 from src.desktop.perception import DesktopPerception
+from src.desktop.vrm import SovereignVRM
 
 class HAGDesktopAgent(NativelyRecursiveAgent):
     """
     HAG-Desktop Build 4.0: Sovereign Desktop Agent.
     An executive layer above the OS with multimodal perception and LGA security.
+    Integrated with Sovereign VRM (Virtual & Risk Manager).
     """
     def __init__(self, agent_id: str = "HAG-Desktop-01"):
         super().__init__(agent_id=agent_id)
@@ -22,6 +24,9 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
 
         # 3. Multimodal Perception Layer
         self.perception = DesktopPerception(vhse=self.vhse)
+
+        # 4. Sovereign VRM (Virtual & Risk Manager)
+        self.vrm = SovereignVRM(values=self.values, governance=self.lga, vhse=self.vhse)
 
     def calculate_e_desktop(self, success_rate: float, q_score: float, token_cost: float, delta: float) -> float:
         """
@@ -39,26 +44,35 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
     def execute_desktop_task(self, task_description: str):
         """
         Full Desktop Executive Loop: Perceive -> Plan -> Secure Actuation -> Verify.
+        Now enhanced with VRM Risk and Resource Management.
         """
         # 1. Perceive
         context = self.perception.get_desktop_context()
 
-        # 2. Plan (TRT Mechanism)
+        # 2. VRM Pre-Check (Risk Assessment)
+        vrm_assessment = self.vrm.evaluate_risk(task_description, resource_usage=0.25)
+        if vrm_assessment["status"] != "SECURE":
+             return {"status": "BLOCKED_BY_VRM", "assessment": vrm_assessment}
+
+        # 3. Plan (TRT Mechanism)
         thought = self.test_time_recursive_thinking(f"Desktop Task: {task_description}")
 
-        # 3. Issue L3 Capability Token
+        # 4. Issue L3 Capability Token
         token = self.lga.l3_cap_manager.issue_token(
             task_id="Task-001",
             capabilities=["fs_read", "shell_exec"]
         )
         self.binding.set_session_token(token)
 
-        # 4. Secure Actuation
+        # 5. Secure Actuation
         # Example: Search for a file pattern in the 'External Environment'
         search_command = "grep -r 'HAG-OS Build 4.0' /home/user/docs"
         result = self.binding.execute_shell(task_description, search_command)
 
-        # 5. Calculate Efficiency (Build 4.0 Metrics)
+        # 6. VRM Post-Execution Resource Scheduling
+        self.vrm.schedule_resource(process_id="PID-TASK-01", priority=1.0)
+
+        # 7. Calculate Efficiency (Build 4.0 Metrics)
         # Using simulated values for demonstration
         q_score = 0.985 # Sovereign level
         delta = self.values.calculate_thales_delta(0.1, 0.1) # Schmidt params for stability
@@ -76,20 +90,25 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
             "thought_status": thought["status"],
             "e_desktop": e_score,
             "delta": delta,
+            "vrm_status": vrm_assessment["status"],
             "governance": "LGA L1-L4 Verified"
         }
 
     def get_desktop_readiness_report(self):
         """HAG-Desktop Build 4.0 Readiness Matrix."""
         base_report = self.get_performance_report()
+        vrm_report = self.vrm.get_vrm_status()
+
         base_report.update({
             "agent_type": "Full Desktop Agent System (Sovereign Build 4.0)",
             "governance_mode": "Layered (LGA)",
+            "vrm_active": True,
             "security_isolation": "96% (L1-Sandbox Target)",
             "perception": "Multimodal (Vision/Files/Voice)",
             "context_peeking_accuracy": "62% (RLM-N Protocol)",
             "voice_latency": "118ms (VISTA.AI)",
-            "operational_formula": "E_desktop (Integrated)"
+            "operational_formula": "E_desktop (Integrated)",
+            "vrm_details": vrm_report
         })
         return base_report
 
