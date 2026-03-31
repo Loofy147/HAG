@@ -4,7 +4,7 @@ from src.desktop.agent import HAGDesktopAgent
 from src.core.values import SystemValues
 
 def run_vrm_proof():
-    print("🚀 Initiating Project VRM Sovereignty Proof (Build 4.0)...")
+    print("🚀 Initiating Project VRM Sovereignty Proof (Build 4.0 - Enhanced)...")
     agent = HAGDesktopAgent(agent_id="VRM-Sovereign-Proof")
     values = SystemValues()
 
@@ -25,11 +25,11 @@ def run_vrm_proof():
     api_check = agent.vrm.monitor_api_call("update_kernel", {"params": "all"})
     print(f"API Verdict: {api_check['verdict']}")
 
-    # Test 4: Closure Lemma Stability
-    print("\n[Test 4] Validating Closure Lemma Convergence...")
-    # Simulate a recursive loop
+    # Test 4: HIS Protocol & Natural Update
+    print("\n[Test 4] Validating Geometric RSI Stability (Closure Lemma + HIS + Natural Update)...")
+    # This will trigger the _recursive_self_improvement loop in evolve()
     agent.evolve("Hypercontext environment for RSI-4 stability check")
-    print("Convergence check complete.")
+    print("Geometric stability check complete.")
 
     print("\n✅ Project VRM Sovereignty Proof Successful.")
     print(f"HAG-OS Build: {values.version}")

@@ -64,9 +64,15 @@ class HAGDesktopAgent(NativelyRecursiveAgent):
         )
         self.binding.set_session_token(token)
 
-        # 5. Secure Actuation
+        # 5. Secure Actuation via Binding (Pre-screened by VRM API Judge)
         # Example: Search for a file pattern in the 'External Environment'
         search_command = "grep -r 'HAG-OS Build 4.0' /home/user/docs"
+
+        # VRM API Pre-screen
+        api_verdict = self.vrm.monitor_api_call("shell_exec", {"command": search_command})
+        if api_verdict["verdict"] != "AUTHORIZED":
+            return {"status": "BLOCKED_BY_VRM_JUDGE", "verdict": api_verdict}
+
         result = self.binding.execute_shell(task_description, search_command)
 
         # 6. VRM Post-Execution Resource Scheduling

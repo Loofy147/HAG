@@ -106,13 +106,12 @@ class SystemValues:
         r"""
         Natural RSI Update: theta_{n+1} = theta_n - eta * (A \otimes B)^-1 * grad
         Ensures the system follows geodesic paths during self-improvement.
+        Using KFAC style update: update = A^-1 * grad * B^-1
         """
-        # F_inv = (A \otimes B)^-1 = A^-1 \otimes B^-1
+        # A_inv = Out x Out, B_inv = In x In
         a_inv = np.linalg.inv(fishers_a)
         b_inv = np.linalg.inv(fishers_b)
 
-        # Kronecker product of inverses
-        f_inv = np.kron(a_inv, b_inv)
-
-        update = self.rsi_learning_rate * np.dot(f_inv, gradient)
+        # update = A^-1 * grad * B^-1
+        update = self.rsi_learning_rate * (a_inv @ gradient @ b_inv)
         return theta - update
