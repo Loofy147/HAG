@@ -35,6 +35,10 @@ class SystemValues:
         self.rlm_peeking_accuracy = 0.62   # 62% Context peeking
         self.voice_latency_ms_target = 120.0 # < 120ms
         self.e_desktop_stable_threshold = 20.0
+        # RSI 2026 Constants
+        self.closure_lemma_core = 648
+        self.gauge_orbit = 4
+        self.rsi_learning_rate = 0.01
 
         if os.path.exists(config_path):
             try:
@@ -86,3 +90,28 @@ class SystemValues:
         q_score = self.get_aggregate_q_score(scores)
         delta = self.calculate_thales_delta(*schmidt_params)
         return q_score >= self.q_threshold and delta > self.weyl_delta_limit
+
+    def calculate_his_recovery(self, goal_key, safe_value, context_noise):
+        """
+        HIS Protocol (Holographic Immunity System):
+        V_recovered = sign((K_goal * V_safe + N_context) * K_goal)
+        Simulates recovery of safety constants from noisy hypercontext.
+        """
+        # Simulated using dot product/correlation logic
+        combined = (goal_key * safe_value) + context_noise
+        recovered = np.sign(np.dot(combined, goal_key))
+        return recovered
+
+    def natural_rsi_update(self, theta, gradient, fishers_a, fishers_b):
+        r"""
+        Natural RSI Update: theta_{n+1} = theta_n - eta * (A \otimes B)^-1 * grad
+        Ensures the system follows geodesic paths during self-improvement.
+        Using KFAC style update: update = A^-1 * grad * B^-1
+        """
+        # A_inv = Out x Out, B_inv = In x In
+        a_inv = np.linalg.inv(fishers_a)
+        b_inv = np.linalg.inv(fishers_b)
+
+        # update = A^-1 * grad * B^-1
+        update = self.rsi_learning_rate * (a_inv @ gradient @ b_inv)
+        return theta - update
