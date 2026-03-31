@@ -52,5 +52,5 @@ class HolographicLayer(nn.Module):
         return {
             "mse": mse.item(),
             "integrity_score": cos_sim.item(),
-            "version": "4.0.0-SOVEREIGN-DESKTOP"
+            "version": "4.0.1-SOVEREIGN-DESKTOP"
         }

@@ -47,7 +47,7 @@ class FreeEnergyMinimizer(nn.Module):
         """Build 4.0 Metadata."""
         return {
             "type": "Active Inference (Free Energy)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "mechanism": "Surprise Minimization",
             "status": "OPERATIONAL"
         }

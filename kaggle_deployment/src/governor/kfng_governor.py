@@ -54,7 +54,7 @@ class KFNGGovernor:
     def get_kfng_metrics(self):
         return {
             "type": "KF-NG (Fisher-Riemannian)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "complexity": "O(N)",
             "threshold": self.threshold,
             "optimization": "Kronecker-Factored Natural Gradient"

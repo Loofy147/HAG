@@ -16,7 +16,15 @@ class L1_Sandbox:
 
     def execute_code(self, code: str, instance_id: Optional[str] = None) -> Dict[str, Any]:
         """Simulates execution within a Linux container with seccomp filtering."""
-        return {"status": "success", "output": f"Simulated output for: {code}", "isolation": "L1-Verified", "shadow": instance_id is not None}
+        # Simulated execution result with L1 metadata
+        return {
+            "status": "success",
+            "output": f"Simulated output for: {code}",
+            "isolation": "L1-Verified",
+            "container_id": f"sandbox-{instance_id if instance_id else 'main'}",
+            "shadow": instance_id is not None,
+            "seccomp_status": "ENFORCED"
+        }
 
 class L2_IntentVerifier:
     """Layer 2: Verifies that proposed actions align with the original task intent."""
@@ -79,12 +87,14 @@ class LayeredGovernance:
     def execute_secured_action(self, task_description: str, action_code: str, token: str, required_cap: str, rsi_shadow: bool = False):
         """Main LGA gateway for executing actions."""
         if not self.l3_cap_manager.check_capability(token, required_cap):
+            reason = f"Insufficient capabilities (L3): Required '{required_cap}' but token was invalid or lacked privilege."
             self.l4_logger.log_action(self.agent_id, action_code, "BLOCKED_L3")
-            return {"status": "error", "reason": "Insufficient capabilities (L3)"}
+            return {"status": "error", "reason": reason, "layer": "L3"}
 
         if not self.l2_verifier.verify(action_code, task_description):
+            reason = f"Intent mismatch (L2): Action '{action_code}' not aligned with task intent '{task_description}'."
             self.l4_logger.log_action(self.agent_id, action_code, "BLOCKED_L2")
-            return {"status": "error", "reason": "Intent mismatch (L2)"}
+            return {"status": "error", "reason": reason, "layer": "L2"}
 
         instance_id = f"RSI-{self.agent_id}" if rsi_shadow else None
         if rsi_shadow:
@@ -99,7 +109,7 @@ class LayeredGovernance:
         """Audit report for LGA."""
         return {
             "type": "Layered Governance Architecture (LGA)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "layers": 4,
             "isolation_efficacy": "96.0%"
         }

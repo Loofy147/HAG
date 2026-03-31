@@ -83,7 +83,7 @@ class ThinkingGovernor:
         """Audit report for Thinking Governor."""
         return {
             "type": "Thinking Governor (Metacognitive)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "threshold": self.threshold,
             "history_depth": len(self.uncertainty_history)
         }

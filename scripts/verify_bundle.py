@@ -29,7 +29,7 @@ def verify_bundle():
     values = SystemValues()
     print(f"Detected Version: {values.version}")
 
-    if "4.0.0" not in values.version:
+    if "4.0.1" not in values.version:
         print("[FAIL] Version mismatch!")
         all_passed = False
 

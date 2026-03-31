@@ -38,7 +38,7 @@ class RecursiveDiffusionReasoning(nn.Module):
         final_state = self.crystallize(initial_state)
         return {
             "status": "Crystallized",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "diffusion_steps": self.num_steps,
             "final_energy": torch.norm(final_state).item(),
             "state": final_state
@@ -48,7 +48,7 @@ class RecursiveDiffusionReasoning(nn.Module):
         """Build 4.0 Metadata."""
         return {
             "type": "Recursive Diffusion Reasoning",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "target_accuracy": 0.62,
             "token_efficiency_gain": 3.0
         }

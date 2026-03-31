@@ -40,7 +40,7 @@ class DistributedAgentNode:
         """Build 4.0 Metadata."""
         return {
             "type": "Distributed Consciousness (DCE)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "sync_latency": "1.0ms (Target)",
             "phase": "ER=EPR Approximated"
         }
