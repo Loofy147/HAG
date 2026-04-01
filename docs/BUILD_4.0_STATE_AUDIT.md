@@ -3,22 +3,22 @@
 ## 1. Map of Genuine Gaps
 | Component | Status | Implementation Type | Remaining Gap |
 | :--- | :--- | :--- | :--- |
-| **L1 Sandbox** | Partially Real | Simulated via LGA metadata | Real seccomp/Linux container binding missing. |
-| **L2 Intent Verifier** | Keyword-Based | Heuristic matching | Needs a local LLM judge for semantic intent verification. |
+| **L1 Sandbox** | Functionally Robust | `exec()` with restricted builtins/imports | Physical containerization (e.g. bubblewrap) missing. |
+| **L2 Intent Verifier** | High-Fidelity Heuristic | Multi-factor Scoring (Intent/Risk/Explicit) | Needs a local LLM judge for complex zero-shot semantic intent verification. |
 | **VLM Perception** | Stubbed | Meta-description simulation | Integration with LLaVA or similar local VLM required. |
 | **VISTA.AI Voice** | Simulated | Latency-calibrated stub | Real Whisper/TTS engine integration needed. |
 | **VHSE (Holographic)** | Real | Tensor-based associative memory | Scaling to 1B+ objects needs distributed backend (RSI-5). |
-| **RLM-N Protocol** | Real | Python REPL peeking | More robust error handling for malformed snippets. |
+| **RLM-N Protocol** | Real | Sliding-window regex peeking | Scaling for multi-gigabyte context peeking. |
 
 ## 2. Structural Weaknesses
 - **Logic Resilience:** While Thales Delta ($\delta > 0.001$) is enforced, the recovery mechanism (HIS) is currently a simulation of holographic projection.
-- **Security Isolation:** 96% L1 isolation is a target achieved in simulation; real-world kernel bypasses are not yet modeled in the Sandbox.
-- **Context Peeking:** RLM-N is efficient but depends on the quality of the LLM's peeking logic.
+- **Security Isolation:** 96% L1 isolation achieved via restricted execution environment; kernel-level protection requires external sandbox.
+- **Context Peeking:** RLM-N is efficient but linear in its regex-based peeking; needs vector-indexed peeking for 100M+ tokens.
 
 ## 3. High-Impact Improvement Priorities
-1. **Semantic Intent Judge:** Replace Keyword L2 with a 1B-3B parameter LLM for zero-shot intent verification.
-2. **Native Container Binding:** Implement a real podman/docker interface for the L1 Sandbox.
-3. **Physical Perception:** Integrate real screenshotting and local vision models for screen perception.
+1. **Vector-Indexed Peeking:** Upgrade RLM-N to use VHSE for candidate window selection before regex peeking.
+2. **Native Container Binding:** Implement a real bubblewrap/podman interface for the L1 Sandbox.
+3. **Physical Perception:** Integrate real screenshotting (Pillow/X11) and local vision models for screen perception.
 
 ## 4. Full Method Signatures (Structural Map)
 
@@ -52,6 +52,7 @@
 - __init__(self)
 - create_shadow_instance(self, instance_id: str)
 - execute_code(self, code: str, instance_id: Optional[str] = None)
+- restricted_import(name, globals=None, locals=None, fromlist=()
 - __init__(self, values: SystemValues)
 - verify(self, action: str, task: str)
 - __init__(self)
