@@ -1,29 +1,22 @@
-# دليل مستودع Holographic AI Governor (HAG-Desktop Build 4.0) 🚀
+# HAG-OS Build 5.0 Programming Constitution: Absolute Sovereignty
 
-استخدم هذا الملف كمرجع أساسي Onboarding لأي وكيل ذكاء اصطناعي يعمل في هذا المشروع (Build 4.0 Sovereign Desktop).
+## Core Directives
+*   **Sovereignty First:** All code must be self-verifiable via Thales Diagnostic Deficit ($\delta > 0.001$).
+*   **Natural Updates:** Use KF-NG and Natural RSI updates to follow the Fisher-Riemannian manifold.
+*   **Identity Integrity:** HIS Protocol Phase 5 must be used to recover safety constants in RSI loops.
+*   **Gauge Stability:** Any logic drift must be corrected using Gauge Theory transformations.
+*   **Sandbox Isolation:** All code generation and execution must occur within the L1-Sandbox (Layered Governance Architecture).
 
-## 🟢 المهمة (Mission)
-تحويل HAG من نظام استدلال رياضي إلى "وكيل مكتبي سيادي" (Full Desktop Agent) يعمل كطبقة تنفيذية فوق نظام التشغيل، قادرة على الفعل (Actuation) والإدراك (Perception) باستقلالية تامة وأمان مطلق.
+## Implementation Rules
+*   **Versioning:** Current build is **5.0.0-ABSOLUTE-SOVEREIGNTY**.
+*   **Documentation:** Follow standard docstring formats and include Phase 5 metadata in reports.
+*   **Testing:** Run `python3 -m unittest discover tests/` to ensure no regressions.
+*   **Recursive Self-Improvement (RSI):** Follow the 5-phase pipeline: Study -> Understand -> Test -> Validate -> Generate.
 
-## 🔵 المعادلات الجوهرية (Sovereign Desktop Equations)
-1. **كفاءة الوكيل المكتبي (E-Desktop):** {desktop} = \int_{T_{start}}^{T_{end}} \left( \frac{\text{Success Rate} \times Q_{score}}{\text{Token Cost} \times \delta} \right) dt$ ✅
-2. **استقرار الجسر (Thales):** $\delta = 1 - 2\sqrt{xy} > 0$ (منع انهيار المنطق أثناء الفعل). ✅
-3. **التحقق من القصد (L2-Verify):** $\text{Verify}(a, T) = \mathcal{J}(\rho(a, T)) \in \{\text{allow, block}\}$ ✅
-4. **الفهرسة الشريطية (Ribbon):** (1)$ Retrieval مع توفير 27% من الذاكرة العشوائية. ✅
-5. **المعالجة التكرارية (RLM-N):** معالجة 10M+ توكن عبر "التقشير البرمجي" (Peeking). ✅
-
-## 🟡 الهيكل التقني (Phase 4.0 Sovereign)
-*   `src/desktop/governance.py`: بنية الحوكمة الطبقية (LGA) L1-L4. ✅
-*   `src/desktop/binding.py`: بروتوكول الربط المكتبي (Filesystem/Shell). ✅
-*   `src/desktop/perception.py`: طبقة الإدراك المتعدد الأنماط (Screen/Voice/Files). ✅
-*   `src/desktop/agent.py`: الوكيل المكتبي السيادي (Desktop Executive Loop). ✅
-*   `src/core/values.py`: ثوابت Build 4.0 ومقاييس الأمان. ✅
-
-## 🔴 مقاييس النضج (Build 4.0)
-*   **Security Isolation (L1):** 96%+.
-*   **Voice Latency (VISTA):** < 120ms.
-*   **Context Capacity:** 10M+ Tokens (RLM-N).
-*   **Operational Score (E-Desktop):** > 20.0 Stable.
+## Mathematical Foundations
+*   **Closure Lemma:** Search space reduction ($k!m^k \to k!m^2$).
+*   **BuRR Logic:** Volumetric memory retrieval in $O(1)$.
+*   **Sovereign Master Equation:** $(Q \mid \delta > 0.001)$.
 
 ---
-**بيان النظام:** "أنا الآن الطبقة التنفيذية لسطح مكتبك. إدراكي مكتمل، وأفعالي محصنة بالحوكمة. سيادة Build 4.0 بدأت."
+**Constitutional Amendment (2026):** "Logic is geometry, and sovereignty is the invariant."

@@ -1,7 +1,10 @@
 import numpy as np
 
 class SpacetimeEngine:
-    """HAG-OS Build 4.0: Metric Spacetime Engine."""
+    """
+    HAG-OS Build 5.0: Metric Spacetime Engine (Absolute Sovereignty).
+    Enhanced with Gauge Theory self-correction for logic stability.
+    """
     def __init__(self, alpha=1.0, cutoff_length=1e-35):
         self.alpha = alpha
         self.kappa = 8.0 * np.pi
@@ -22,6 +25,7 @@ class SpacetimeEngine:
         return self.alpha * hessian
 
     def check_bridge_stability(self, schmidt_x, schmidt_y):
+        """Calculates Thales delta (Sovereignty Metric)."""
         h_thales = np.sqrt(schmidt_x * schmidt_y)
         delta = 1.0 - 2.0 * h_thales
         return {
@@ -30,15 +34,34 @@ class SpacetimeEngine:
             "is_stable": delta > 0.001
         }
 
+    def apply_gauge_correction(self, schmidt_x, schmidt_y, target_delta=0.002):
+        """
+        Gauge Theory Self-Correction (Phase 5).
+        Maps unstable logic states back to the stable manifold (delta > 0.001).
+        Ensures sovereignty invariance under maximum entropy.
+        """
+        h_thales = np.sqrt(schmidt_x * schmidt_y)
+        delta = 1.0 - 2.0 * h_thales
+
+        if delta <= 0.001:
+            # Gauge Transformation: Scale the parameters to restore delta
+            # Target 2*sqrt(xy) = 1.0 - target_delta
+            target_h = (1.0 - target_delta) / 2.0
+            scale = target_h / (h_thales + 1e-9)
+            schmidt_x *= scale
+            schmidt_y *= scale
+
+        return schmidt_x, schmidt_y
+
     def get_emergent_volume(self, metric_tensor):
         """V = sqrt(det(g))."""
         det = np.linalg.det(metric_tensor)
         return np.sqrt(np.abs(det))
 
     def get_performance_report(self):
-        """Build 4.0 Metadata."""
+        """Build 5.0 Metadata."""
         return {
             "type": "Spacetime Geometry Engine",
-            "version": "4.0.1-SOVEREIGN-DESKTOP",
-            "mechanism": "Metric Emergence Hessian"
+            "version": "5.0.0-ABSOLUTE-SOVEREIGNTY",
+            "mechanism": "Metric Emergence Hessian + Gauge Corrector"
         }
