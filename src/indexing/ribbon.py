@@ -59,7 +59,7 @@ class RibbonIndexer:
         savings = 1.0 - (actual_bits / traditional_bits)
         return {
             "type": "Ribbon Indexer (Boolean Banding)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "num_slots": self.m,
             "memory_savings": f"{savings * 100:.2f}% (Target: 27%)"
         }

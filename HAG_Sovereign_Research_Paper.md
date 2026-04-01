@@ -47,7 +47,7 @@ HAG-OS Build 4.0 utilizes the **RCF Pipeline** for self-metabolism:
 ## 5. Performance Metrics
 | Metric | Value | Significance |
 | :--- | :--- | :--- |
-| Version | 4.0.0-SOVEREIGN-DESKTOP | Sovereign Desktop Maturity |
+| Version | 4.0.1-SOVEREIGN-DESKTOP | Sovereign Desktop Maturity |
 | Security Isolation | 96.0% | L1/L2 Combined Efficacy |
 | Context Capacity | 10M+ Tokens (100x Growth) | RLM-N Protocol Scalability |
 | Retrieval Speed | 1.0ms (Target) | DCE Entanglement Latency |

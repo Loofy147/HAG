@@ -99,7 +99,7 @@ class LayeredGovernance:
         """Audit report for LGA."""
         return {
             "type": "Layered Governance Architecture (LGA)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "layers": 4,
             "isolation_efficacy": "96.0%"
         }

@@ -46,7 +46,7 @@ class RecursiveLanguageModel:
         """Build 4.0 Efficiency Report."""
         return {
             "type": "Recursive Language Model (RLM-N)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "retrieval_accuracy": "62% (RLM Protocol)",
             "token_efficiency": "3.0x (Target)",
             "context_capacity": "10M+ Tokens"

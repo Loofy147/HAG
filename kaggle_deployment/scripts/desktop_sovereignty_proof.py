@@ -12,7 +12,7 @@ def prove_desktop_sovereignty():
 
     # 1. Verification of System Version
     print(f"System Version: {values.version}")
-    assert "4.0.0" in values.version
+    assert "4.0.1" in values.version
 
     # 2. Verification of Multimodal Perception
     perception = agent.perception.get_desktop_context()

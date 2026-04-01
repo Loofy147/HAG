@@ -30,11 +30,39 @@ class RecursiveLanguageModel:
         return sub_results
 
     def _execute_repl_peeking(self, focused_query: str):
-        """Retrieves needle-in-haystack facts via REPL peeking (62% accuracy target)."""
+        """
+        HAG-OS Build 4.0: RLM-N Programmatic Peeking Protocol.
+        Retrieves needle-in-haystack facts using regex-based extraction on hypercontext.
+        Target Accuracy: 62% for non-linear retrieval.
+        """
         data = self.environment.get('big_data', "")
-        if "critical_pattern" in data:
-            return "MATCH: Critical pattern discovered via RLM-Peek."
-        return "No relevant data found in hypercontext."
+        if not data:
+            return "ERROR: Hypercontext (big_data) is empty or not loaded."
+
+        # Programmatic peeking logic: find relevant sentences using keywords
+        keywords = focused_query.lower().split()
+        # Filter common stopwords
+        stopwords = {"for", "the", "and", "find", "show", "query", "me", "what", "is", "of", "in", "to", "a", "an", "is"}
+        search_terms = [k for k in keywords if k not in stopwords]
+
+        if not search_terms:
+            search_terms = keywords[:2]
+
+        results = []
+        # Sliding window search simulated by line-splitting
+        lines = data.split('\n')
+        for i, line in enumerate(lines):
+            if any(term in line.lower() for term in search_terms):
+                # Context peeking: Grab the line and some neighborhood (programmatic peek)
+                peek_window = lines[max(0, i-1):min(len(lines), i+2)]
+                results.append(f"[Line {i}] " + " | ".join([l.strip() for l in peek_window]))
+                if len(results) >= 5: # Limit peeks for efficiency
+                    break
+
+        if results:
+            return f"MATCHES found in hypercontext via RLM-Peek:\n" + "\n".join(results)
+
+        return f"PEEK_FAIL: No direct matches for '{search_terms}' in 10M+ token hypercontext."
 
     def _partition_context_logic(self, query: str):
         return [{"query": f"Sub-query for: {query}"}]
@@ -46,7 +74,7 @@ class RecursiveLanguageModel:
         """Build 4.0 Efficiency Report."""
         return {
             "type": "Recursive Language Model (RLM-N)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "retrieval_accuracy": "62% (RLM Protocol)",
             "token_efficiency": "3.0x (Target)",
             "context_capacity": "10M+ Tokens"

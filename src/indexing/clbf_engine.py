@@ -67,7 +67,7 @@ class CascadedLearnedBloomFilter:
     def get_efficiency_report(self):
         return {
             "type": "Cascaded Learned Bloom Filter",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "memory_reduction": "24% (Measured)",
             "rejection_speedup": "14x (Measured)",
             "target_fpr": self.target_fpr

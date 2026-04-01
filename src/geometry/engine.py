@@ -39,6 +39,6 @@ class SpacetimeEngine:
         """Build 4.0 Metadata."""
         return {
             "type": "Spacetime Geometry Engine",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "mechanism": "Metric Emergence Hessian"
         }

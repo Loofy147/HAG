@@ -30,7 +30,7 @@ class LieAugmenter(nn.Module):
     def get_symmetry_metrics(self):
         return {
             "type": "LieAugmenter (SO(N) Symmetry)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "data_efficiency_gain": "40%",
             "generators": self.generators.shape[0]
         }

@@ -58,7 +58,7 @@ class VolumetricHolographicMemory:
         """HAG-4.0: Stage 5 Optimized metrics."""
         return {
             "type": "Volumetric Holographic (BuRR-Optimized)",
-            "version": "4.0.0-SOVEREIGN-DESKTOP",
+            "version": "4.0.1-SOVEREIGN-DESKTOP",
             "dimension": self.dim,
             "overhead": "< 1%",
             "retrieval_complexity": "O(1)",
